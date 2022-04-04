@@ -12,7 +12,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(activityHomeBinding.root)
-        activityHomeBinding.bottomNavigationView.background=null
 
 
 
