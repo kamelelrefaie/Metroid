@@ -10,4 +10,19 @@
         android:name="com.example.metroid.ui.view.main_Cycle.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.ReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

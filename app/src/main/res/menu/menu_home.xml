@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/menu_search"
+        android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search"
         android:title="Search" />
     <item
-        android:id="@+id/menu_reservation"
+        android:id="@+id/reservationFragment"
         android:icon="@drawable/ic_train"
         android:title="Reservation" />
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
         android:title="Setttings" />
 </menu>

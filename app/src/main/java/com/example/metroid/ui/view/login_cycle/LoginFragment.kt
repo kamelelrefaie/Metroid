@@ -35,6 +35,7 @@ class LoginFragment : Fragment() {
 
         fragmentLoginBinding?.btnLogin?.setOnClickListener {
           startActivity(Intent(requireActivity(),HomeActivity::class.java))
+            requireActivity().finish()
         }
 
         fragmentLoginBinding?.gotoRegister?.setOnClickListener {
