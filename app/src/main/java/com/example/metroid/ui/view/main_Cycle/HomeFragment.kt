@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.metroid.R
+import com.example.metroid.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
 
-
+   private var fragmentHomeBinding: FragmentHomeBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,8 +23,18 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+       fragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        fragmentHomeBinding?.ivNfc?.let {
+            Glide.with(requireActivity())
+                .load(R.drawable.ic_nfc).circleCrop().into(it)
+        }
+
+        fragmentHomeBinding?.ivProfilePic?.let {
+            Glide.with(requireActivity()).load(R.drawable.kamel).circleCrop().into(it)
+        }
+
+return fragmentHomeBinding?.root
     }
 
 
