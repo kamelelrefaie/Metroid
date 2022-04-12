@@ -54,8 +54,9 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/btnSignUp"
-        app:layout_constraintTop_toBottomOf="@+id/view5">
+        app:layout_constraintBottom_toTopOf="@id/btnSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        android:layout_marginBottom="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
