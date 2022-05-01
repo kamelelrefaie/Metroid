@@ -9,8 +9,7 @@ class OnBoardingViewPagerAdapter(
     private val list: ArrayList<Fragment>,
     fm: FragmentManager,
     lifeCycle: Lifecycle
-) :
-    FragmentStateAdapter(fm, lifeCycle) {
+) : FragmentStateAdapter(fm, lifeCycle) {
     override fun getItemCount(): Int {
         return list.size
     }

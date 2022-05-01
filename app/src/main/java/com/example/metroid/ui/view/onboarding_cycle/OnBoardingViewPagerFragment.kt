@@ -14,7 +14,9 @@ import com.example.metroid.ui.view.onboarding_cycle.screen.ThirdScreen
 
 class OnBoardingViewPagerFragment : Fragment() {
 
-    private var fragmentOnBoardingViewPagerBinding: FragmentOnBoardingViewPagerBinding? = null
+    private var _fragmentOnBoardingViewPagerBinding: FragmentOnBoardingViewPagerBinding? = null
+
+    private val fragmentOnBoardingViewPagerBinding get() = _fragmentOnBoardingViewPagerBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +29,9 @@ class OnBoardingViewPagerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        fragmentOnBoardingViewPagerBinding =
+        _fragmentOnBoardingViewPagerBinding =
             FragmentOnBoardingViewPagerBinding.inflate(layoutInflater)
 
         val fragmentList = arrayListOf<Fragment>(
@@ -44,9 +46,9 @@ class OnBoardingViewPagerFragment : Fragment() {
             lifecycle
         )
 
-        fragmentOnBoardingViewPagerBinding?.fragmentVp?.adapter = adapter
-
-        return fragmentOnBoardingViewPagerBinding?.root
+        fragmentOnBoardingViewPagerBinding.fragmentVp.adapter = adapter
+      //  fragmentOnBoardingViewPagerBinding?.fragmentVp?.registerOnPageChangeCallback()
+        return fragmentOnBoardingViewPagerBinding.root
 
 
     }
@@ -54,6 +56,6 @@ class OnBoardingViewPagerFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        fragmentOnBoardingViewPagerBinding = null
+        _fragmentOnBoardingViewPagerBinding = null
     }
 }

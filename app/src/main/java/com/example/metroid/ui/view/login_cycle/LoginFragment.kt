@@ -15,13 +15,7 @@ import com.example.metroid.ui.view.main_Cycle.HomeActivity
 class LoginFragment : Fragment() {
 
     private var fragmentLoginBinding: FragmentLoginBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +35,6 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding?.gotoRegister?.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
         }
-
 
 
         return fragmentLoginBinding?.root

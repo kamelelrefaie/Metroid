@@ -14,4 +14,5 @@ class OnBoardingActivity : AppCompatActivity() {
          supportActionBar?.hide()
         setContentView(R.layout.activity_on_boarding)
     }
+
 }
