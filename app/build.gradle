@@ -120,6 +120,9 @@ dependencies {
     testImplementation "com.google.truth:truth:1.0.1"
     testImplementation "org.mockito:mockito-core:2.21.0"
 
+    //Preferences
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
 
     // Instrumented Unit Tests
     androidTestImplementation "junit:junit:4.13.2"

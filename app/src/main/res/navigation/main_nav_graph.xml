@@ -19,10 +19,38 @@
         android:id="@+id/reservationFragment"
         android:name="com.example.metroid.ui.view.main_Cycle.ReservationFragment"
         android:label="fragment_reservation"
-        tools:layout="@layout/fragment_reservation" />
+        tools:layout="@layout/fragment_reservation" >
+        <action
+            android:id="@+id/action_reservationFragment_to_trainsFragment"
+            app:destination="@id/trainsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.metroid.ui.view.main_Cycle.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/trainsFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.train.TrainsFragment"
+        android:label="fragment_trains"
+        tools:layout="@layout/fragment_trains" >
+        <argument
+            android:name="stationResponse"
+            app:argType="com.example.metroid.model.remote.responses.StationResponse" />
+        <action
+            android:id="@+id/action_trainsFragment_to_confirmTicketFragment"
+            app:destination="@id/confirmTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmTicketFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.train.ConfirmTicketFragment"
+        android:label="fragment_confirm_ticket"
+        tools:layout="@layout/fragment_confirm_ticket" >
+        <argument
+            android:name="tripId"
+            app:argType="long" />
+        <argument
+            android:name="userId"
+            app:argType="long" />
+    </fragment>
 </navigation>

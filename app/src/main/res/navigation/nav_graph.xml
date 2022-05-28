@@ -31,7 +31,11 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.metroid.ui.view.login_cycle.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" />
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.metroid.ui.view.login_cycle.SignUpFragment"

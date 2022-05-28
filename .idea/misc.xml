@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.193" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable/google.xml" value="0.193" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable/ic_email.xml" value="0.193" />
@@ -28,6 +29,8 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/layout/fragment_third_screen.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/menu/menu_home.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.111" />
+        <entry key="app/src/main/res/drawable/background_header.xml" value="0.103" />
+        <entry key="app/src/main/res/drawable/background_ticket.xml" value="0.103" />
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.111" />
@@ -44,6 +47,8 @@
         <entry key="app/src/main/res/drawable/wave.xml" value="0.111" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/fragment_confirm_ticket.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_confirmation_ticket_show.xml" value="0.1933876811594203" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
@@ -55,9 +60,15 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.2006340579710145" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/fragment_trains.xml" value="0.12212982177734377" />
+        <entry key="app/src/main/res/layout/item_confirm_seat.xml" value="0.184375" />
+        <entry key="app/src/main/res/layout/item_list_reservation.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/item_reservation.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/item_train.xml" value="0.1933876811594203" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.15520833333333334" />
       </map>
     </option>
   </component>

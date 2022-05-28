@@ -1,10 +1,14 @@
 package com.example.metroid.di
 
 import android.content.Context
-import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.metroid.R
+import com.example.metroid.model.remote.MetroidApi
+import com.example.metroid.repository.DataStoreManager
+import com.example.metroid.repository.MetroidRepository
+import com.example.metroid.repository.MetroidRepositoryImpl
+import com.example.metroid.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,14 +40,20 @@ object AppModule {
             .setDefaultRequestOptions(RequestOptions().placeholder(R.drawable.ic_email).error(R.drawable.ic_email))
     //
 
-//    @Singleton
-//    @Provides
-//    fun providePixabayApi(): PixabayAPI =
-//        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
-//            .build().create(PixabayAPI::class.java)
+    @Singleton
+    @Provides
+    fun provideMetroidApi(): MetroidApi =
+        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
+            .build().create(MetroidApi::class.java)
 
-//    @Singleton
-//    @Provides
-//    fun provideDefaultShoppingRepository(dao: ShoppingDao, api: PixabayAPI) =
-//        DefaultShoppingRepository(dao, api) as ShoppingRepository
+    @Singleton
+    @Provides
+    fun provideDefaultShoppingRepository( api: MetroidApi) =
+        MetroidRepositoryImpl(api) as MetroidRepository
+
+    @Singleton
+    @Provides
+    fun provideDataStoreRepo(@ApplicationContext context: Context) : DataStoreManager {
+      return  DataStoreManager(context)
+    }
 }

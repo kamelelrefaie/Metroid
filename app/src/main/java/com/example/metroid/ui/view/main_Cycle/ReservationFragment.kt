@@ -1,44 +1,90 @@
 package com.example.metroid.ui.view.main_Cycle
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.metroid.R
-import com.example.metroid.data.StationData
+import com.example.metroid.model.StationData
 import com.example.metroid.databinding.FragmentReservationBinding
+import com.example.metroid.model.remote.responses.StationResponse
 import com.example.metroid.ui.adapter.ReservationAdapter
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.metroid.ui.view.viewmodel.login_cycle.LoginViewModel
+import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
+import com.example.metroid.utils.Constants.trainStationNameList
+import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.coroutines.launch
 
 
 class ReservationFragment : Fragment() {
 
-
+    private lateinit var mReservationViewModel: ReservationViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         val fragmentReservationBinding
-        :FragmentReservationBinding = FragmentReservationBinding.inflate(inflater)
+                : FragmentReservationBinding = FragmentReservationBinding.inflate(inflater)
+        mReservationViewModel =
+            ViewModelProvider(requireActivity())[ReservationViewModel::class.java]
 
-        fragmentReservationBinding.rvReservation.layoutManager =LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        val list = mutableListOf<StationData>()
-        list.add(StationData("maadi",R.drawable.maadi_station))
-        list.add(StationData("Ramses",R.drawable.maadi_station))
-        list.add(StationData("cairo",R.drawable.maadi_station))
-        list.add(StationData("alex",R.drawable.maadi_station))
+        viewLifecycleOwner.lifecycleScope.launch {
+            val userModel = mReservationViewModel.getPrefData(requireActivity())
+            fragmentReservationBinding.rvUserName.text = userModel.name
+        }
 
-        val adapter = ReservationAdapter()
-        adapter.setStationList(list)
 
-        fragmentReservationBinding.rvReservation.adapter = adapter
+        val arrayAdapter = ArrayAdapter(
+            requireActivity(),
+            R.layout.item_list_reservation,
+            trainStationNameList
+        )
+
+        fragmentReservationBinding.actvFrom.setAdapter(arrayAdapter)
+        fragmentReservationBinding.actvTo.setAdapter(arrayAdapter)
+
+        var firstStation = ""
+        fragmentReservationBinding.actvFrom.setOnItemClickListener { adapterView, view, position, id ->
+            firstStation = adapterView.getItemAtPosition(position).toString()
+
+        }
+
+        var endStation = ""
+
+        fragmentReservationBinding.actvTo.setOnItemClickListener { adapterView, view, position, id ->
+            endStation = adapterView.getItemAtPosition(position).toString()
+
+        }
+
+        fragmentReservationBinding.btnSearch.setOnClickListener {
+            if (firstStation == endStation || firstStation.isEmpty() || endStation.isEmpty()) {
+                Toast.makeText(requireActivity(), "Please choose right route", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val stationResponse =
+                        mReservationViewModel.getStationId(firstStation, endStation)
+                    fragmentReservationBinding.actvTo.setText("")
+                    fragmentReservationBinding.actvFrom.setText("")
+                    findNavController().navigate(
+                        ReservationFragmentDirections.actionReservationFragmentToTrainsFragment(
+                            stationResponse
+                        )
+                    )
+                }
+            }
+        }
+
+
 
 
         return fragmentReservationBinding.root
