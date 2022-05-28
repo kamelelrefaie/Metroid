@@ -1,0 +1,48 @@
+package com.example.metroid.repository
+
+import com.example.metroid.model.remote.MetroidApi
+import com.example.metroid.model.remote.responses.*
+import java.time.LocalDate
+import javax.inject.Inject
+
+class MetroidRepositoryImpl @Inject constructor(
+    private val metroidApi: MetroidApi
+) : MetroidRepository {
+    override suspend fun login(email: String, password: String): Login {
+        return metroidApi.login(email, password)
+    }
+
+    override suspend fun register(body: RegisterBody): Login {
+        return metroidApi.register(body)
+    }
+
+    override suspend fun requestPassword(email: String): Login {
+        return metroidApi.requestPassword(email)
+    }
+
+    override suspend fun getStationId(from: String, to: String): StationResponse {
+        return metroidApi.getStationId(from, to)
+    }
+
+    override suspend fun getTripTime(source: Int, dest: Int): TripResponse {
+        return metroidApi.getTripTime(source, dest)
+    }
+
+    override suspend fun getTripAtSpecificTime(
+        source: Int,
+        dest: Int,
+        arr: LocalDate
+    ): TripResponse {
+        return metroidApi.getTripAtSpecificTime(source,dest,arr)
+    }
+
+    override suspend fun confirmTicketRequest(
+        userId: Long,
+        tripId: Long,
+        ticketModel: TicketModel
+    ): Login {
+     return  metroidApi.confirmTicketRequest(userId,tripId,ticketModel)
+    }
+
+
+}
