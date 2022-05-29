@@ -1,25 +1,23 @@
 package com.example.metroid.ui.view.main_Cycle.train
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.widget.doAfterTextChanged
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
-import com.example.metroid.R
-import com.example.metroid.databinding.FragmentConfirmTicketBinding
 import com.example.metroid.databinding.FragmentConfirmationTicketShowBinding
 import com.example.metroid.model.remote.responses.SeatModel
 import com.example.metroid.model.remote.responses.TicketModel
-
+import com.example.metroid.model.remote.responses.TicketInfoData
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
-import com.example.metroid.utils.Constants
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import java.lang.Exception
+import java.time.format.DateTimeFormatter
 
 
 class ConfirmationTicketShowFragment : Fragment() {
@@ -27,27 +25,54 @@ class ConfirmationTicketShowFragment : Fragment() {
     private lateinit var fragmentConfirmationTicketShowBinding: FragmentConfirmationTicketShowBinding
     private lateinit var listOfSeats: MutableList<SeatModel>
     private lateinit var ticketModel: TicketModel
+    private var userId: Long = -1
+    private lateinit var ticketInfoData: TicketInfoData
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-
-
-        fragmentConfirmationTicketShowBinding = FragmentConfirmationTicketShowBinding.inflate(inflater)
+        fragmentConfirmationTicketShowBinding =
+            FragmentConfirmationTicketShowBinding.inflate(inflater)
 
         mReservationViewModel =
             ViewModelProvider(requireActivity())[ReservationViewModel::class.java]
+        runBlocking {
+
+                val userData = mReservationViewModel.getPrefData(requireActivity())
+                userId = userData.id
+                ticketInfoData = mReservationViewModel.getTicketInfo(userId)
+
+        }
+
+     try {
+         fragmentConfirmationTicketShowBinding.tvPrice.setText("${ticketInfoData.price} L.E")
+         fragmentConfirmationTicketShowBinding.tvStateFrom.setText("${ticketInfoData.stateArr}")
+         fragmentConfirmationTicketShowBinding.tvStateTo.setText("${ticketInfoData.stateDept}")
+         fragmentConfirmationTicketShowBinding.tvUserName.setText("${ticketInfoData.firstName}")
+         fragmentConfirmationTicketShowBinding.tvStationFromName.setText(ticketInfoData.nameArr)
+         fragmentConfirmationTicketShowBinding.tvStationToName.setText(ticketInfoData.nameDept)
+         fragmentConfirmationTicketShowBinding.tvSeats.setText(ticketInfoData.seats.toString())
+         fragmentConfirmationTicketShowBinding.tvTripId.setText(ticketInfoData.tripId.toString())
 
 
+         fragmentConfirmationTicketShowBinding.tvConfirmedAt.setText(ticketInfoData.confirmDate)
+         val format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+         val formatDateTime: String = ticketInfoData.arrTime.format(format)
+         val formatDateTime2: String = ticketInfoData.deptTime.format(format)
 
+         fragmentConfirmationTicketShowBinding.tvArrCalender.setText(formatDateTime)
+         fragmentConfirmationTicketShowBinding.tvDeptCalender.setText(formatDateTime2)
+
+     }catch (e :Exception){
+         Log.e("asd",e.toString())
+         Toast.makeText(requireActivity(), "this ${e.toString()}", Toast.LENGTH_SHORT).show()
+     }
 
         return fragmentConfirmationTicketShowBinding.root
     }
-
-
-
 
 
 }

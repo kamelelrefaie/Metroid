@@ -28,7 +28,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.metroid.ui.view.main_Cycle.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_showTicketFragment2"
+            app:destination="@id/showTicketFragment" />
+    </fragment>
     <fragment
         android:id="@+id/trainsFragment"
         android:name="com.example.metroid.ui.view.main_Cycle.train.TrainsFragment"
@@ -52,5 +56,22 @@
         <argument
             android:name="userId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_confirmTicketFragment_to_confirmationTicketShowFragment"
+            app:destination="@id/confirmationTicketShowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmationTicketShowFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.train.ConfirmationTicketShowFragment"
+        android:label="fragment_confirmation_ticket_show"
+        tools:layout="@layout/fragment_confirmation_ticket_show" />
+    <fragment
+        android:id="@+id/showTicketFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.ShowTicketFragment"
+        android:label="fragment_show_ticket"
+        tools:layout="@layout/fragment_show_ticket" >
+        <action
+            android:id="@+id/action_showTicketFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
     </fragment>
 </navigation>

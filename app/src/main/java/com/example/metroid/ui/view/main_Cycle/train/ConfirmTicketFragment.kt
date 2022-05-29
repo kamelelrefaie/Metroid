@@ -11,15 +11,18 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.metroid.R
 import com.example.metroid.databinding.FragmentConfirmTicketBinding
 import com.example.metroid.model.remote.responses.SeatModel
+import com.example.metroid.model.remote.responses.TicketInfoData
 import com.example.metroid.model.remote.responses.TicketModel
 
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
 import com.example.metroid.utils.Constants
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 class ConfirmTicketFragment : Fragment() {
@@ -28,7 +31,7 @@ class ConfirmTicketFragment : Fragment() {
     private lateinit var fragmentConfirmTicketBinding: FragmentConfirmTicketBinding
     private lateinit var listOfSeats: MutableList<SeatModel>
     private lateinit var ticketModel: TicketModel
-
+    private lateinit var ticketInfoData: TicketInfoData
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +43,11 @@ class ConfirmTicketFragment : Fragment() {
 
         mReservationViewModel =
             ViewModelProvider(requireActivity())[ReservationViewModel::class.java]
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            ticketInfoData = mReservationViewModel.getTicketInfo(userId = args.userId)
+            Toast.makeText(requireActivity(), "fadsf", Toast.LENGTH_SHORT).show()
+        }
 
         val arrayAdapter = ArrayAdapter(
             requireActivity(),
@@ -74,16 +82,18 @@ class ConfirmTicketFragment : Fragment() {
 
         }
 
-
         //tripId
         val tripId = args.tripId
         //userId
         val userId = args.userId
 
-
         fragmentConfirmTicketBinding.btnConfirm.setOnClickListener {
+
             if (className.isEmpty() || quantity == 0 || price == 0) {
                 Toast.makeText(requireActivity(), "fill with appropriate data", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (ticketInfoData.message == 1) {
+                Toast.makeText(requireActivity(), "you already have a ticket", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 when (quantity) {
@@ -100,59 +110,80 @@ class ConfirmTicketFragment : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            listOfSeats = mutableListOf()
-                            listOfSeats.add(
-                                0,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatOne.text.toString().toInt()
-                                )
-                            )
-                            listOfSeats.add(
-                                1,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
-                                        .toInt()
-                                )
-                            )
-                            listOfSeats.add(
-                                2,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString()
-                                        .toInt()
-                                )
-                            )
-                            listOfSeats.add(
-                                3,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString()
-                                        .toInt()
-                                )
-                            )
-                            listOfSeats.add(
-                                4,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberFive.text.toString()
-                                        .toInt()
-                                )
-                            )
+                            val listOfStrings = mutableListOf<String>()
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatOne.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberFive.text.toString())
 
-                            //confirm ticket
-                            ticketModel = TicketModel(className, price, listOfSeats, quantity)
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                val message = mReservationViewModel.confirmTicketRequest(
-                                    userId,
-                                    tripId,
-                                    ticketModel
+                            if (checkDuplicateUsingAdd(listOfStrings as ArrayList<String>)) {
+                                Toast.makeText(
+                                    requireActivity(),
+                                    "please don't choose same seat",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                listOfSeats = mutableListOf()
+                                listOfSeats.add(
+                                    0,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatOne.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                                if (message == "success") {
-                                    Toast.makeText(requireActivity(), "success", Toast.LENGTH_SHORT)
-                                        .show()
-                                } else {
-                                    Toast.makeText(
-                                        requireActivity(),
-                                        "$message",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                listOfSeats.add(
+                                    1,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
+                                            .toInt()
+                                    )
+                                )
+                                listOfSeats.add(
+                                    2,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString()
+                                            .toInt()
+                                    )
+                                )
+                                listOfSeats.add(
+                                    3,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString()
+                                            .toInt()
+                                    )
+                                )
+                                listOfSeats.add(
+                                    4,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberFive.text.toString()
+                                            .toInt()
+                                    )
+                                )
+
+                                //confirm ticket
+                                ticketModel = TicketModel(className, price, listOfSeats, quantity)
+                                viewLifecycleOwner.lifecycleScope.launch {
+                                    val message = mReservationViewModel.confirmTicketRequest(
+                                        userId,
+                                        tripId,
+                                        ticketModel
+                                    )
+                                    if (message == "success") {
+                                        Toast.makeText(
+                                            requireActivity(),
+                                            "success",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                        findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
+                                    } else {
+                                        Toast.makeText(
+                                            requireActivity(),
+                                            "$message",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
                                 }
                             }
                         }
@@ -169,53 +200,74 @@ class ConfirmTicketFragment : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            listOfSeats = mutableListOf()
-                            listOfSeats.add(
-                                0,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatOne.text.toString().toInt()
+                            val listOfStrings = mutableListOf<String>()
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatOne.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString())
+                            if (checkDuplicateUsingAdd(listOfStrings as ArrayList<String>)) {
+                                Toast.makeText(
+                                    requireActivity(),
+                                    "please don't choose same seat",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+
+                                listOfSeats = mutableListOf()
+                                listOfSeats.add(
+                                    0,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatOne.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
-                            listOfSeats.add(
-                                1,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
-                                        .toInt()
+                                listOfSeats.add(
+                                    1,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
-                            listOfSeats.add(
-                                2,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString()
-                                        .toInt()
+                                listOfSeats.add(
+                                    2,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
-                            listOfSeats.add(
-                                3,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString()
-                                        .toInt()
+                                listOfSeats.add(
+                                    3,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
 
 
-                            //confirm ticket
-                            ticketModel = TicketModel(className, price, listOfSeats, quantity)
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                val message = mReservationViewModel.confirmTicketRequest(
-                                    userId,
-                                    tripId,
-                                    ticketModel
-                                )
-                                if (message == "success") {
-                                    Toast.makeText(requireActivity(), "success", Toast.LENGTH_SHORT)
-                                        .show()
-                                } else {
-                                    Toast.makeText(
-                                        requireActivity(),
-                                        "$message",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                //confirm ticket
+                                ticketModel = TicketModel(className, price, listOfSeats, quantity)
+                                viewLifecycleOwner.lifecycleScope.launch {
+                                    val message = mReservationViewModel.confirmTicketRequest(
+                                        userId,
+                                        tripId,
+                                        ticketModel
+                                    )
+                                    if (message == "success") {
+                                        Toast.makeText(
+                                            requireActivity(),
+                                            "success",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                        findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
+
+                                    } else {
+                                        Toast.makeText(
+                                            requireActivity(),
+                                            "$message",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
                                 }
                             }
                         }
@@ -233,15 +285,12 @@ class ConfirmTicketFragment : Fragment() {
                             ).show()
 
                         } else {
-                            if (fragmentConfirmTicketBinding.tieSeatOne.text.toString()
-                                    .equals(fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString())
-                                ||
-                                fragmentConfirmTicketBinding.tieSeatOne.text.toString()
-                                    .equals(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
-                                ||
-                                fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
-                                    .equals(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
-                            ) {
+                            val listOfStrings = mutableListOf<String>()
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatOne.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString())
+                            listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
+
+                            if (checkDuplicateUsingAdd(listOfStrings as ArrayList<String>)) {
                                 Toast.makeText(
                                     requireActivity(),
                                     "please don't choose same seat",
@@ -249,49 +298,56 @@ class ConfirmTicketFragment : Fragment() {
                                 ).show()
                             } else {
 
-                            listOfSeats = mutableListOf()
-                            listOfSeats.add(
-                                0,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatOne.text.toString().toInt()
+                                listOfSeats = mutableListOf()
+                                listOfSeats.add(
+                                    0,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatOne.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
-                            listOfSeats.add(
-                                1,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
-                                        .toInt()
+                                listOfSeats.add(
+                                    1,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
-                            listOfSeats.add(
-                                2,
-                                SeatModel(
-                                    fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString()
-                                        .toInt()
+                                listOfSeats.add(
+                                    2,
+                                    SeatModel(
+                                        fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString()
+                                            .toInt()
+                                    )
                                 )
-                            )
 
 
-                            //confirm ticket
-                            ticketModel = TicketModel(className, price, listOfSeats, quantity)
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                val message = mReservationViewModel.confirmTicketRequest(
-                                    userId,
-                                    tripId,
-                                    ticketModel
-                                )
-                                if (message == "success") {
-                                    Toast.makeText(requireActivity(), "success", Toast.LENGTH_SHORT)
-                                        .show()
-                                } else {
-                                    Toast.makeText(
-                                        requireActivity(),
-                                        "$message",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                //confirm ticket
+                                ticketModel = TicketModel(className, price, listOfSeats, quantity)
+                                viewLifecycleOwner.lifecycleScope.launch {
+                                    val message = mReservationViewModel.confirmTicketRequest(
+                                        userId,
+                                        tripId,
+                                        ticketModel
+                                    )
+                                    if (message == "success") {
+                                        Toast.makeText(
+                                            requireActivity(),
+                                            "success",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                        findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
+
+                                    } else {
+                                        Toast.makeText(
+                                            requireActivity(),
+                                            "$message",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
                                 }
                             }
-                        }
                         }
                     }
                     2 -> {
@@ -345,6 +401,8 @@ class ConfirmTicketFragment : Fragment() {
                                             Toast.LENGTH_SHORT
                                         )
                                             .show()
+                                        findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
+
                                     } else {
                                         Toast.makeText(
                                             requireActivity(),
@@ -384,12 +442,15 @@ class ConfirmTicketFragment : Fragment() {
                                 if (message == "success") {
                                     Toast.makeText(requireActivity(), "success", Toast.LENGTH_SHORT)
                                         .show()
+                                    findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
+
                                 } else {
                                     Toast.makeText(
                                         requireActivity(),
                                         "$message",
                                         Toast.LENGTH_SHORT
                                     ).show()
+
                                 }
                             }
                         }
@@ -483,6 +544,16 @@ class ConfirmTicketFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun checkDuplicateUsingAdd(input: ArrayList<String>): Boolean {
+        val tempSet = HashSet<String>()
+        for (str in input) {
+            if (!tempSet.add(str)) {
+                return true
+            }
+        }
+        return false
     }
 
 

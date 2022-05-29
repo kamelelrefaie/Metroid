@@ -37,7 +37,7 @@ object AppModule {
     @Provides
     fun provideGlideInstance(@ApplicationContext context: Context) =
         Glide.with(context)
-            .setDefaultRequestOptions(RequestOptions().placeholder(R.drawable.ic_email).error(R.drawable.ic_email))
+            .setDefaultRequestOptions(RequestOptions().error(R.drawable.ic_delete_ticket))
     //
 
     @Singleton

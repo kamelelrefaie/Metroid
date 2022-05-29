@@ -55,6 +55,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvStationFromName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="MASR"
@@ -62,6 +63,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvStateFrom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -70,15 +72,10 @@
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="04:05 pm"
-                        android:textAlignment="center"
-                        android:textSize="12sp" />
+
 
                     <TextView
+                        android:id="@+id/tvArrCalender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -112,6 +109,7 @@
 
 
                     <TextView
+                        android:id="@+id/tvStationToName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="MONOFIA"
@@ -119,6 +117,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvStateTo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -127,15 +126,10 @@
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="06:50 pm"
-                        android:textAlignment="center"
-                        android:textSize="12sp" />
+
 
                     <TextView
+                        android:id="@+id/tvDeptCalender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -178,6 +172,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvUserName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -201,6 +196,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvSeats"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -235,6 +231,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvTripId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -254,11 +251,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="GATE"
+                        android:text="PRICE"
                         android:textAlignment="center"
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -279,11 +277,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="BOARDING"
+                        android:text="CONFIRMED AT"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvConfirmedAt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

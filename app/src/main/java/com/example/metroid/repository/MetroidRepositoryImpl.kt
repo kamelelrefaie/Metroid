@@ -44,5 +44,13 @@ class MetroidRepositoryImpl @Inject constructor(
      return  metroidApi.confirmTicketRequest(userId,tripId,ticketModel)
     }
 
+    override suspend fun getTicketInfo(userId: Long): TicketInfoData {
+        return metroidApi.getTicketInfo(userId)
+    }
+
+    override suspend fun deleteTicket(userId: Long): Login {
+        return metroidApi.deleteTicket(userId)
+    }
+
 
 }

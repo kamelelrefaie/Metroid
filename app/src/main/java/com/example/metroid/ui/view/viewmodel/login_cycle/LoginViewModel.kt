@@ -24,13 +24,10 @@ class LoginViewModel @Inject constructor(
         if (!checkEmail(email)) {
             return false;
         }
-
         val loginV = repository.login(email, password)
         Log.e("here", "$email  $password")
 
         return loginV.message.equals("success")
-
-
     }
 
     suspend fun register(body: RegisterBody): Boolean {
@@ -45,6 +42,5 @@ class LoginViewModel @Inject constructor(
 
     suspend fun saveNameAndUserIdToDataStore(name: String, userId: Long, context: Context) {
         dataStore.save(UserData(name, userId))
-
     }
 }

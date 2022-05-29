@@ -3,14 +3,13 @@ package com.example.metroid.ui.view.viewmodel.main_cycle
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.metroid.model.local.UserData
-import com.example.metroid.model.remote.responses.StationResponse
-import com.example.metroid.model.remote.responses.TicketModel
-import com.example.metroid.model.remote.responses.TripResponse
+import com.example.metroid.model.remote.responses.*
 import com.example.metroid.repository.DataStoreManager
 import com.example.metroid.repository.MetroidRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import retrofit2.http.Query
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -46,4 +45,15 @@ class ReservationViewModel @Inject constructor(
         return reqBody.message
     }
 
+    suspend fun getTicketInfo(
+        userId: Long
+    ): TicketInfoData {
+        return repository.getTicketInfo(userId)
+    }
+
+    suspend fun deleteTicket(
+        userId: Long
+    ): Login {
+        return repository.deleteTicket(userId)
+    }
 }

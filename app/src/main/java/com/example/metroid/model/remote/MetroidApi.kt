@@ -1,10 +1,7 @@
 package com.example.metroid.model.remote
 
 import com.example.metroid.model.remote.responses.*
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.time.LocalDate
 
 interface MetroidApi {
@@ -35,4 +32,13 @@ interface MetroidApi {
         @Body ticketModel: TicketModel
     ): Login
 
+    @GET("/api/v1/home/ticket/getTicketData")
+    suspend fun getTicketInfo(
+        @Query("id") userId: Long
+    ): TicketInfoData
+
+    @DELETE("/api/v1/home/ticket/delete")
+    suspend fun deleteTicket(
+        @Query("id") userId: Long
+    ): Login
 }
