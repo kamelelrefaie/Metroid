@@ -13,4 +13,6 @@
     <string name="google_icon">Google Icon</string>
     <string name="facebook_icon">facebook_icon</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="tv_noNfc">There is no nfc can be used</string>
+
 </resources>
