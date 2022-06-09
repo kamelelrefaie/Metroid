@@ -1,5 +1,6 @@
 package com.example.metroid.ui.view.main_Cycle
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,28 +13,29 @@ import com.example.metroid.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-   private var fragmentHomeBinding: FragmentHomeBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+   private lateinit var fragmentHomeBinding: FragmentHomeBinding
+   
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
        fragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
-        fragmentHomeBinding?.ivNfc?.let {
+        fragmentHomeBinding.ivNfc.let {
             Glide.with(requireActivity())
                 .load(R.drawable.ic_nfc).circleCrop().into(it)
         }
 
-        fragmentHomeBinding?.ivProfilePic?.let {
+        fragmentHomeBinding.ivNfc.setOnClickListener {
+            startActivity(Intent(requireActivity(), NfcPageActivity::class.java))
+        }
+
+        fragmentHomeBinding.ivProfilePic.let {
             Glide.with(requireActivity()).load(R.drawable.kamel).circleCrop().into(it)
         }
 
-return fragmentHomeBinding?.root
+return fragmentHomeBinding.root
     }
 
 
