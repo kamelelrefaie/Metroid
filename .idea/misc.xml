@@ -44,14 +44,18 @@
         <entry key="app/src/main/res/drawable/ic_show_ticket.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_swap_horiz_white.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/ic_train.xml" value="0.111" />
+        <entry key="app/src/main/res/drawable/round_back_white_1000.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/round_back_whitestroke_1000.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/round_border.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/shape_circle.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/wave.xml" value="0.111" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/dialog_rate_us.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_cancel_ticket.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/fragment_confirm_ticket.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_confirmation_ticket_show.xml" value="0.16671684375707652" />
+        <entry key="app/src/main/res/layout/fragment_feedback.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
@@ -70,6 +74,8 @@
         <entry key="app/src/main/res/layout/item_reservation.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/item_settings.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/item_train.xml" value="0.1933876811594203" />
+        <entry key="app/src/main/res/layout/no_internet_connection.xml" value="0.10167846679687498" />
+        <entry key="app/src/main/res/layout/round_back_white_1000.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />

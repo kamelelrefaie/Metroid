@@ -18,6 +18,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.metroid.databinding.FragmentReservationBinding
 import com.example.metroid.databinding.FragmentTrainsBinding
+import com.example.metroid.databinding.NoInternetConnectionBinding
 import com.example.metroid.model.remote.responses.TripResponseItem
 import com.example.metroid.ui.adapter.ReservationAdapter
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
@@ -42,46 +43,52 @@ class TrainsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         fragmentTrainsBinding = FragmentTrainsBinding.inflate(inflater)
-
         mReservationViewModel =
             ViewModelProvider(requireActivity())[ReservationViewModel::class.java]
 
-        fragmentTrainsBinding.tilSearch.setOnClickListener {
-            DatePickerDialog(requireActivity(), onDateSet(), 2022, 5, 1).show()
-        }
+        intiAdapter()
 
-        fragmentTrainsBinding.rvReservation.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        var userId = -1L
-        viewLifecycleOwner.lifecycleScope.launch {
-            val userModel = mReservationViewModel.getPrefData(requireActivity())
-            userId = userModel.id
-        }
 
-        adapter = ReservationAdapter(fragment = this, userId =userId)
-        viewLifecycleOwner.lifecycleScope.launch {
-            arrayList = mReservationViewModel.getTrainTime(
-                args.stationResponse.from.toInt(),
-                args.stationResponse.to.toInt()
-            )
-            adapter.setTrainList(arrayList)
-            if (arrayList.isEmpty()) {
-                fragmentTrainsBinding.noTrain.visibility = View.VISIBLE
-                fragmentTrainsBinding.rvReservation.visibility = View.GONE
-            } else {
-                fragmentTrainsBinding.rvReservation.adapter = adapter
-
-            }
-
-        }
         return fragmentTrainsBinding.root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun intiAdapter() {
+        try {
+            fragmentTrainsBinding.rvReservation.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            var userId = -1L
+            viewLifecycleOwner.lifecycleScope.launch {
+                val userModel = mReservationViewModel.getPrefData(requireActivity())
+                userId = userModel.id
+            }
+            adapter = ReservationAdapter(fragment = this, userId = userId)
+            fragmentTrainsBinding.tilSearch.setOnClickListener {
+                DatePickerDialog(requireActivity(), onDateSet(), 2022, 5, 1).show()
+            }
+            viewLifecycleOwner.lifecycleScope.launch {
+                arrayList = mReservationViewModel.getTrainTime(
+                    args.stationResponse.from.toInt(),
+                    args.stationResponse.to.toInt()
+                )
+                adapter.setTrainList(arrayList)
+                if (arrayList.isEmpty()) {
+                    fragmentTrainsBinding.noTrain.visibility = View.VISIBLE
+                    fragmentTrainsBinding.rvReservation.visibility = View.GONE
+                } else {
+                    fragmentTrainsBinding.rvReservation.adapter = adapter
+                }
+            }
+        } catch (e: Exception) {
+
+            Toast.makeText(requireActivity(), "$e", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun onDateSet(): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-
-
             fragmentTrainsBinding.tilSearch.setText(
                 "" + LocalDate.of(
                     year,
@@ -89,7 +96,6 @@ class TrainsFragment : Fragment() {
                     day
                 )
             )
-
             viewLifecycleOwner.lifecycleScope.launch {
                 arrayList = mReservationViewModel.getTrainAtSpecificTime(
                     args.stationResponse.from.toInt(),

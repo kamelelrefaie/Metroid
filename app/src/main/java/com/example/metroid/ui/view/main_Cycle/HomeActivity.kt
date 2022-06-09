@@ -2,6 +2,7 @@ package com.example.metroid.ui.view.main_Cycle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.metroid.R
@@ -20,6 +21,19 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.fragmentHomeHost)
         activityHomeBinding.bottomNavigationView.setupWithNavController(navController)
 
+
+    }
+
+    fun hideBottomNavigationView() {
+        activityHomeBinding.bottomNavigationView.clearAnimation()
+        activityHomeBinding.bottomNavigationView.animate().translationY(activityHomeBinding.bottomNavigationView.height.toFloat()).duration = 300
+        activityHomeBinding.bottomNavigationView.visibility = View.GONE
+    }
+
+    fun showBottomNavigationView() {
+        activityHomeBinding.bottomNavigationView.clearAnimation()
+        activityHomeBinding.bottomNavigationView.animate().translationY(0f).duration = 300
+        activityHomeBinding.bottomNavigationView.visibility = View.VISIBLE
 
     }
 }

@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.metroid.databinding.FragmentSettingsBinding
-import com.example.metroid.utils.SettingsItemData
+import java.lang.Exception
 
 
 class SettingsFragment : Fragment() {
@@ -26,17 +26,36 @@ class SettingsFragment : Fragment() {
         //go to show ticket
         fragmentSettingsBinding.cvShow.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToShowTicketFragment2())
+            if (requireActivity() is HomeActivity) {
+                (activity as HomeActivity).hideBottomNavigationView()
+            }
         }
 
         fragmentSettingsBinding.cvDelete.setOnClickListener {
 
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToCancelTicketFragment())
+            if (requireActivity() is HomeActivity) {
+                (activity as HomeActivity).hideBottomNavigationView()
+            }
+
         }
 
-        fragmentSettingsBinding
+        fragmentSettingsBinding.cvFeedback.setOnClickListener {
 
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToFeedbackFragment())
+            if (requireActivity() is HomeActivity) {
+                (activity as HomeActivity).hideBottomNavigationView()
+            }
+
+        }
 
         return fragmentSettingsBinding.root
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        if (requireActivity() is HomeActivity) {
+            (activity as HomeActivity).showBottomNavigationView()
+        }
+    }
 }

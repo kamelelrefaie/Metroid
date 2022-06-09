@@ -71,15 +71,29 @@ class ReservationFragment : Fragment() {
                     .show()
             } else {
                 viewLifecycleOwner.lifecycleScope.launch {
+                    try {
                     val stationResponse =
                         mReservationViewModel.getStationId(firstStation, endStation)
                     fragmentReservationBinding.actvTo.setText("")
                     fragmentReservationBinding.actvFrom.setText("")
-                    findNavController().navigate(
-                        ReservationFragmentDirections.actionReservationFragmentToTrainsFragment(
-                            stationResponse
+
+                        findNavController().navigate(
+                            ReservationFragmentDirections.actionReservationFragmentToTrainsFragment(
+                                stationResponse
+                            )
                         )
-                    )
+                        if (requireActivity() is HomeActivity) {
+                            (activity as HomeActivity).hideBottomNavigationView()
+                        }
+
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            requireActivity(),
+                            "please,check your internet connection.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                 }
             }
         }
@@ -90,5 +104,10 @@ class ReservationFragment : Fragment() {
         return fragmentReservationBinding.root
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        if (requireActivity() is HomeActivity) {
+            (activity as HomeActivity).showBottomNavigationView()
+        }
+    }
 }
