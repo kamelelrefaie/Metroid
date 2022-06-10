@@ -52,5 +52,9 @@ class MetroidRepositoryImpl @Inject constructor(
         return metroidApi.deleteTicket(userId)
     }
 
+    override suspend fun submitFeedback(feedbackReq: FeedBackRequest): Login {
+        return metroidApi.submitFeedback(feedbackReq)
+    }
+
 
 }

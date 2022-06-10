@@ -41,4 +41,9 @@ interface MetroidApi {
     suspend fun deleteTicket(
         @Query("id") userId: Long
     ): Login
+
+    @POST("/api/v1/home/feedback")
+    suspend fun submitFeedback(
+        @Body feedbackReq: FeedBackRequest
+    ): Login
 }

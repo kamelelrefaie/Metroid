@@ -41,6 +41,15 @@ class SearchFragment : Fragment() {
                 : FragmentSearchBinding =
             FragmentSearchBinding.inflate(inflater)
 
+        val firstLine = arrayListOf("New El-Marg",
+            "El-Marg", "Ezbet El-Nakhl", "Ain Shams", "El-Matareyya", "Helmeyet El-Zeitoun",
+            "Hadayeq El-Zeitoun", "Saray El-Qobba", "Hammamat El-Qobba", "Kobry El-Qoba",
+            "Mansheyet El-Sadr", "El-Demerdash", "Ghamra", "Al-Shohadaa", "Orabi",
+            "Gamal Abdel-Nasser", "El-Sadat", "Saad Zaghloul", "El-Sayeda Zainab",
+            "El-Malek El-Saleh", "Mar Girgis", "El-Zahraa", "Dar El-Salam",
+            "Hadayeq El-Maadi", "Maadi", "Sakanat El-Maadi", "Tora El-Balad",
+            "Kozzika", "Tora El-Asmant", "El-Maasara", "Hadayeq Helwan", "Wadi Hof",
+            "Helwan University", "Ain Helwan", "Helwan")
 
         return fragmentSearchBinding.root
     }

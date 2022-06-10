@@ -4,7 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.19074074074074074" />
-        <entry key="..\:/Metroid/app/src/main/res/layout/activity_nfc_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.193" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable/google.xml" value="0.193" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable/ic_email.xml" value="0.193" />
@@ -51,12 +50,13 @@
         <entry key="app/src/main/res/drawable/shape_circle.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/wave.xml" value="0.111" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.184375" />
+        <entry key="app/src/main/res/layout/activity_nfc_page.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/dialog_rate_us.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_cancel_ticket.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/layout/fragment_confirm_ticket.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_confirmation_ticket_show.xml" value="0.16671684375707652" />
-        <entry key="app/src/main/res/layout/fragment_feedback.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_feedback.xml" value="0.31923472086588545" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />

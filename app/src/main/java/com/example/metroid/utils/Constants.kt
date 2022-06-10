@@ -4,14 +4,6 @@ import java.util.regex.Pattern
 
 object Constants {
 
-    val RESERVATION_LIST = listOf<String>(
-        "Maadi Station",
-        "Ramsis Station",
-        "Ramsis Station",
-        "Ramsis Station",
-        "Ramsis Station",
-        "Ramsis Station"
-    )
 
     const val BASE_URL = "http://192.168.1.61:8080/"
 

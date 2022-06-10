@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.metroid.R
 import com.example.metroid.databinding.FragmentHomeBinding
+import java.lang.Exception
 
 
 class HomeFragment : Fragment() {
@@ -27,9 +28,14 @@ class HomeFragment : Fragment() {
                 .load(R.drawable.ic_nfc).circleCrop().into(it)
         }
 
-        fragmentHomeBinding.ivNfc.setOnClickListener {
-            startActivity(Intent(requireActivity(), NfcPageActivity::class.java))
+        try {
+            fragmentHomeBinding.ivNfc.setOnClickListener {
+                startActivity(Intent(requireActivity(), NfcPageActivity::class.java))
+            }
+        }catch (e:Exception){
+
         }
+
 
         fragmentHomeBinding.ivProfilePic.let {
             Glide.with(requireActivity()).load(R.drawable.kamel).circleCrop().into(it)
