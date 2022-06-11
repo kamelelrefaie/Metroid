@@ -18,12 +18,22 @@ import com.example.metroid.utils.parser.NdefMessageParser
 import kotlin.math.abs
 
 class NfcPageActivity : AppCompatActivity() {
-    private var counter = 2;
+    private var counter = 2
     private lateinit var activityNfcPageBinding: ActivityNfcPageBinding
     private var mNfcAdapter: NfcAdapter? = null
     private var mPendingIntent: PendingIntent? = null
     var first_station=0
-    private val FIRST_LINE = arrayListOf("","New El-Marg","El-Marg","Ezbet El-Nakhl" ,"Ain Shams" ,"El-Matareyya" ,"Helmeyet El-Zeitoun" ,"Hadayeq El-Zeitoun" ,"Saray El-Qobba" ,"Hammamat El-Qobba" ,"Kobry El-Qoba" ,"Mansheyet El-Sadr" ,"El-Demerdash" ,"Ghamra" ,"Al-Shohadaa" ,"Orabi", "Gamal Abdel-Nasser" ,"El-Sadat" ,"Saad Zaghloul" ,"El-Sayeda Zainab" ,"El-Malek El-Saleh" ,"Mar Girgis" ,"El-Zahraa" ,"Dar El-Salam" ,"Hadayeq El-Maadi" ,"Maadi" ,"Sakanat El-Maadi" ,"Tora El-Balad" ,"Kozzika" ,"Tora El-Asmant" ,"El-Maasara" ,"Hadayeq Helwan" ,"Wadi Hof" ,"Helwan University" ,"Ain Helwan" ,"Helwan")
+    private val FIRST_LINE = arrayListOf("","New El-Marg","El-Marg","Ezbet El-Nakhl" ,"Ain Shams"
+        ,"El-Matareyya" ,"Helmeyet El-Zeitoun" ,"Hadayeq El-Zeitoun" ,"Saray El-Qobba" ,"Hammamat El-Qobba" ,"Kobry El-Qoba" ,"Mansheyet El-Sadr"
+        ,"El-Demerdash" ,"Ghamra" ,"Al-Shohadaa" ,"Orabi", "Gamal Abdel-Nasser" ,"El-Sadat" ,"Saad Zaghloul" ,"El-Sayeda Zainab" ,"El-Malek El-Saleh"
+        ,"Mar Girgis" ,"El-Zahraa" ,"Dar El-Salam" ,"Hadayeq El-Maadi" ,"Maadi" ,"Sakanat El-Maadi" ,"Tora El-Balad" ,"Kozzika" ,"Tora El-Asmant"
+        ,"El-Maasara" ,"Hadayeq Helwan" ,"Wadi Hof" ,"Helwan University" ,"Ain Helwan" ,"Helwan")
+
+    private val firstLineT= arrayListOf(17,19)
+
+    private val SECOND_LINE = arrayListOf("","Shubra El-Kheima","Kolleyet El-Zeraa" ,"El-Mazallat" ,"El-Khalafawy"
+        , "St. Teresa" ,"Rod El-Farag" ,"Massara" ,"Al-Shodaa" ,"Attaba" ,"Mohamed Naguib" ,"El-Sadat" ,"Opera"
+        ,"Dokki" ,"El-Bohooth" ,"Cairo University" ,"Faisal" ,"Giza" ,"Om El-Masryeen", "Sakyat Mekki" ,"El-Mounib")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,9 +104,11 @@ class NfcPageActivity : AppCompatActivity() {
 
          val diff= abs(  first_station-  builder.toString().trim().toInt())
             Toast.makeText(this, "${diff}", Toast.LENGTH_SHORT).show()
+            //Calculate Price
             var price = 5
             if (diff in 10..16) price = 7
             else if(diff > 16) price =10
+
             activityNfcPageBinding.tvPriceEditable.text = "$price L.E"
             counter--
         }else if (counter == 0){
@@ -114,6 +126,13 @@ class NfcPageActivity : AppCompatActivity() {
             mNfcAdapter!!.isEnabled
         }
     }
+
+
+    private fun fromSameToSame(from: Int , to: Int): Int{
+        return abs(  from - to)
+    }
+
+
 
 
 }
