@@ -14,7 +14,11 @@ import androidx.navigation.findNavController
 import com.example.metroid.R
 import com.example.metroid.databinding.ActivityHomeBinding
 import com.example.metroid.databinding.ActivityNfcPageBinding
+import com.example.metroid.utils.Constants.getFirstLine
+import com.example.metroid.utils.Constants.getSecondLine
+import com.example.metroid.utils.Constants.getThirdLine
 import com.example.metroid.utils.parser.NdefMessageParser
+import timber.log.Timber
 import kotlin.math.abs
 
 class NfcPageActivity : AppCompatActivity() {
@@ -22,19 +26,19 @@ class NfcPageActivity : AppCompatActivity() {
     private lateinit var activityNfcPageBinding: ActivityNfcPageBinding
     private var mNfcAdapter: NfcAdapter? = null
     private var mPendingIntent: PendingIntent? = null
-    var first_station=0
-    private val FIRST_LINE = arrayListOf("","New El-Marg","El-Marg","Ezbet El-Nakhl" ,"Ain Shams"
-        ,"El-Matareyya" ,"Helmeyet El-Zeitoun" ,"Hadayeq El-Zeitoun" ,"Saray El-Qobba" ,"Hammamat El-Qobba" ,"Kobry El-Qoba" ,"Mansheyet El-Sadr"
-        ,"El-Demerdash" ,"Ghamra" ,"Al-Shohadaa" ,"Orabi", "Gamal Abdel-Nasser" ,"El-Sadat" ,"Saad Zaghloul" ,"El-Sayeda Zainab" ,"El-Malek El-Saleh"
-        ,"Mar Girgis" ,"El-Zahraa" ,"Dar El-Salam" ,"Hadayeq El-Maadi" ,"Maadi" ,"Sakanat El-Maadi" ,"Tora El-Balad" ,"Kozzika" ,"Tora El-Asmant"
-        ,"El-Maasara" ,"Hadayeq Helwan" ,"Wadi Hof" ,"Helwan University" ,"Ain Helwan" ,"Helwan")
+    var firstStationName = ""
+    var firstStationKey = ""
+    var secondStationName = ""
+    var secondStationKey = ""
 
-    private val firstLineT= arrayListOf(17,19)
+    private val aSadatKey = 17
+    private val aShohadaKey = 14
 
-    private val SECOND_LINE = arrayListOf("","Shubra El-Kheima","Kolleyet El-Zeraa" ,"El-Mazallat" ,"El-Khalafawy"
-        , "St. Teresa" ,"Rod El-Farag" ,"Massara" ,"Al-Shodaa" ,"Attaba" ,"Mohamed Naguib" ,"El-Sadat" ,"Opera"
-        ,"Dokki" ,"El-Bohooth" ,"Cairo University" ,"Faisal" ,"Giza" ,"Om El-Masryeen", "Sakyat Mekki" ,"El-Mounib")
+    private val bAttaba = 9
+    private val cAttaaba = 1
 
+    private val bSadatKey = 11
+    private val bShohadaKey = 8
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityNfcPageBinding = ActivityNfcPageBinding.inflate(layoutInflater)
@@ -45,7 +49,7 @@ class NfcPageActivity : AppCompatActivity() {
             mPendingIntent = PendingIntent.getActivity(
                 this, 0,
                 Intent(this, this.javaClass)
-                    .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),PendingIntent.FLAG_MUTABLE
+                    .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_MUTABLE
             )
         } else {
             activityNfcPageBinding.tvFrom.text = getString(R.string.tv_noNfc)
@@ -91,27 +95,52 @@ class NfcPageActivity : AppCompatActivity() {
         if (counter == 2) {
             activityNfcPageBinding.tvWelcome.setText("Touch the machine to exit")
             activityNfcPageBinding.ll.visibility = View.VISIBLE
-           activityNfcPageBinding.tvFrom.text = FIRST_LINE[builder.toString().trim().toInt()]
-            first_station = builder.toString().trim().toInt()
+
+            //get first station key
+            firstStationKey = builder.toString().trim()
+
+            //set Station Name
+            firstStationName = getStationName(builder)
+            activityNfcPageBinding.tvFrom.text = firstStationName
+
             counter--
         } else if (counter == 1) {
-
             activityNfcPageBinding.tvWelcome.setText("Return To MainMenu")
-
-            activityNfcPageBinding.tvTo.text = FIRST_LINE[builder.toString().trim().toInt()]
-
             activityNfcPageBinding.tvPriceEditable.visibility = View.VISIBLE
 
-         val diff= abs(  first_station-  builder.toString().trim().toInt())
-            Toast.makeText(this, "${diff}", Toast.LENGTH_SHORT).show()
+            //get second station key
+            secondStationKey = builder.toString().trim()
+
+            //set station name
+            secondStationName = getStationName(builder)
+            activityNfcPageBinding.tvTo.text = secondStationName
+            var diff = 1
+            if (firstStationKey[0] == secondStationKey[0]) {
+                diff = fromSameToSame(
+                    firstStationKey.drop(1).toInt(),
+                    secondStationKey.drop(1).toInt()
+                )
+            } else if (firstStationKey[0] == 'a' && secondStationKey[0] == 'b') {
+                diff = calcDiffFromAtoB()
+            } else if (firstStationKey[0] == 'b' && secondStationKey[0] == 'a') {
+                diff = calcDiffFromBtoA()
+            } else if (firstStationKey[0] == 'b' && secondStationKey[0] == 'c') {
+                diff = calcDiffFromBtoC()
+            } else if (firstStationKey[0] == 'c' && secondStationKey[0] == 'b') {
+                diff = calcDiffFromCtoB()
+            } else if (firstStationKey[0] == 'c' && secondStationKey[0] == 'a') {
+                diff = calcDiffFromCtoA()
+            } else if (firstStationKey[0] == 'a' && secondStationKey[0] == 'c') {
+                diff = calcDiffFromAtoC()
+            }
             //Calculate Price
             var price = 5
             if (diff in 10..16) price = 7
-            else if(diff > 16) price =10
+            else if (diff > 16) price = 10
 
             activityNfcPageBinding.tvPriceEditable.text = "$price L.E"
             counter--
-        }else if (counter == 0){
+        } else if (counter == 0) {
             Toast.makeText(this, "plz go back to main menu ", Toast.LENGTH_SHORT).show()
         }
 
@@ -128,11 +157,117 @@ class NfcPageActivity : AppCompatActivity() {
     }
 
 
-    private fun fromSameToSame(from: Int , to: Int): Int{
-        return abs(  from - to)
+    private fun fromSameToSame(from: Int, to: Int): Int {
+        return abs(from - to)
     }
 
+    private fun getStationName(stringBuilder: StringBuilder): String {
 
+        return if (stringBuilder.toString().trim()[0] == 'a') {
+            val firstLine = getFirstLine()
+            firstLine[stringBuilder.toString().trim()]!!
+        } else if (stringBuilder.toString().trim()[0] == 'b') {
+            val secondLine = getSecondLine()
+            secondLine[stringBuilder.toString().trim()]!!
+        } else if (stringBuilder.toString().trim()[0] == 'c') {
+            val thirdLine = getThirdLine()
+            thirdLine[stringBuilder.toString().trim()]!!
+        } else {
+            ""
+        }
+
+
+    }
+
+    private fun calcDiffFromAtoB(): Int {
+        var sadatPath = 0
+        var shohadaPath = 0
+        //sadat path
+        sadatPath = fromSameToSame(firstStationKey.drop(1).toInt(), aSadatKey)
+        sadatPath += fromSameToSame(secondStationKey.drop(1).toInt(), bSadatKey)
+
+        //shouhadaPath
+        shohadaPath = fromSameToSame(firstStationKey.drop(1).toInt(), aShohadaKey)
+        shohadaPath += fromSameToSame(secondStationKey.drop(1).toInt(), bShohadaKey)
+
+        return if (shohadaPath <= sadatPath) {
+            sadatPath
+        } else {
+            shohadaPath
+        }
+    }
+
+    private fun calcDiffFromBtoA(): Int {
+        var sadatPath = 0
+        var shohadaPath = 0
+        //sadat path
+        sadatPath = fromSameToSame(firstStationKey.drop(1).toInt(), bSadatKey)
+        sadatPath += fromSameToSame(secondStationKey.drop(1).toInt(), aSadatKey)
+
+        //shouhadaPath
+        shohadaPath = fromSameToSame(firstStationKey.drop(1).toInt(), bShohadaKey)
+        shohadaPath += fromSameToSame(secondStationKey.drop(1).toInt(), aShohadaKey)
+
+        return if (shohadaPath <= sadatPath) {
+            sadatPath
+        } else {
+            shohadaPath
+        }
+    }
+
+    private fun calcDiffFromBtoC(): Int {
+
+        //attaba path
+        var attaba: Int = fromSameToSame(firstStationKey.drop(1).toInt(), bAttaba)
+        attaba += fromSameToSame(secondStationKey.drop(1).toInt(), cAttaaba)
+
+        return attaba
+    }
+
+    private fun calcDiffFromCtoB(): Int {
+
+        //attaba path
+        var attaba: Int = fromSameToSame(firstStationKey.drop(1).toInt(), cAttaaba)
+        attaba += fromSameToSame(secondStationKey.drop(1).toInt(), bAttaba)
+
+        return attaba
+    }
+
+    private fun calcDiffFromCtoA(): Int {
+
+        //attaba path
+        var attaba: Int = fromSameToSame(firstStationKey.drop(1).toInt(), cAttaaba)
+
+        if (16 <= secondStationKey.drop(1).toInt()) {
+            attaba += fromSameToSame(bSadatKey, bAttaba)
+            attaba += fromSameToSame(secondStationKey.drop(1).toInt(), aSadatKey)
+
+        } else {
+            attaba += fromSameToSame(bShohadaKey, bAttaba)
+            attaba += fromSameToSame(secondStationKey.drop(1).toInt(), aShohadaKey)
+        }
+
+
+        return attaba
+    }
+
+    private fun calcDiffFromAtoC(): Int {
+
+        //attaba path
+        var attaba: Int = 0
+
+        if (16 <= firstStationKey.drop(1).toInt()) {
+            attaba += fromSameToSame(aSadatKey, firstStationKey.drop(1).toInt())
+            attaba += fromSameToSame(bAttaba, bSadatKey)
+
+        } else {
+            attaba += fromSameToSame(aShohadaKey, firstStationKey.drop(1).toInt())
+            attaba += fromSameToSame(bAttaba, bShohadaKey)
+        }
+        attaba += fromSameToSame(cAttaaba, secondStationKey.drop(1).toInt())
+
+        return attaba
+    }
 
 
 }

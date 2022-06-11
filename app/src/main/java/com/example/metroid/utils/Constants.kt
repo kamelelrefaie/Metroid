@@ -28,4 +28,125 @@ object Constants {
     )
 
     val classList = arrayListOf("A", "B", "C")
+
+
+    private val FIRST_LINE = arrayListOf(
+        "",
+        "New El-Marg",
+        "El-Marg",
+        "Ezbet El-Nakhl",
+        "Ain Shams",
+        "El-Matareyya",
+        "Helmeyet El-Zeitoun",
+        "Hadayeq El-Zeitoun",
+        "Saray El-Qobba",
+        "Hammamat El-Qobba",
+        "Kobry El-Qoba",
+        "Mansheyet El-Sadr",
+        "El-Demerdash",
+        "Ghamra",
+        "Al-Shohadaa",
+        "Orabi",
+        "Gamal Abdel-Nasser",
+        "El-Sadat",
+        "Saad Zaghloul",
+        "El-Sayeda Zainab",
+        "El-Malek El-Saleh",
+        "Mar Girgis",
+        "El-Zahraa",
+        "Dar El-Salam",
+        "Hadayeq El-Maadi",
+        "Maadi",
+        "Sakanat El-Maadi",
+        "Tora El-Balad",
+        "Kozzika",
+        "Tora El-Asmant",
+        "El-Maasara",
+        "Hadayeq Helwan",
+        "Wadi Hof",
+        "Helwan University",
+        "Ain Helwan",
+        "Helwan"
+    )
+    private val SECOND_LINE = arrayListOf(
+        "",
+        "Shubra El-Kheima",
+        "Kolleyet El-Zeraa",
+        "El-Mazallat",
+        "El-Khalafawy",
+        "St. Teresa",
+        "Rod El-Farag",
+        "Massara",
+        "Al-Shodaa",
+        "Attaba",
+        "Mohamed Naguib",
+        "El-Sadat",
+        "Opera",
+        "Dokki",
+        "El-Bohooth",
+        "Cairo University",
+        "Faisal",
+        "Giza",
+        "Om El-Masryeen",
+        "Sakyat Mekki",
+        "El-Mounib"
+    )
+
+
+    private val THIRD_LINE = arrayListOf(
+        "",
+        "Attaba",
+        "Bab El-Shaarya",
+        "El-Geish",
+        "Abdou Basha",
+        "Abbasseya",
+        "Cairo Fairgrounds",
+        "Cairo Stadium",
+        "Kolleyet El-Banat",
+        "El-Ahram",
+        "Haron",
+        "Heliopolis",
+        "Alf Maskan",
+        "Nady El-Shams",
+        "El-Nozha",
+        "Hesham Barakat",
+        "Qobaa",
+        "Omar Ibn El-Khattab",
+        "El-Haykestep",
+        "Adly Mansour"
+    )
+
+
+    fun getFirstLine(): HashMap<String, String> {
+        val firstLine = HashMap<String, String>()
+
+        for (i in 1..35) {
+            firstLine.put("a$i", FIRST_LINE[i])
+        }
+
+        return firstLine
+    }
+
+    fun getSecondLine(): HashMap<String, String> {
+        val secondLine = HashMap<String, String>()
+
+        for (i in 1..20) {
+            secondLine.put("b$i", SECOND_LINE[i])
+        }
+
+        return secondLine
+    }
+
+    fun getThirdLine(): HashMap<String, String> {
+        val thirdLine = HashMap<String, String>()
+
+        for (i in 1..19) {
+            thirdLine.put("c$i", THIRD_LINE[i])
+        }
+
+        return thirdLine
+    }
+
+
+
 }
