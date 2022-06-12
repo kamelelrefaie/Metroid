@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_feedbackFragment"
             app:destination="@id/feedbackFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainsFragment"
@@ -93,4 +96,8 @@
         android:id="@+id/feedbackFragment"
         android:name="com.example.metroid.ui.view.settings_cycle.FeedbackFragment"
         android:label="FeedbackFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.EditProfileFragment"
+        android:label="EditProfileFragment" />
 </navigation>

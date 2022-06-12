@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.19074074074074074" />
         <entry key="..\:/Metroid/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_edit_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_feedback.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/fragment_reservation.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/fragment_search.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/item_list_reservation.xml" value="0.36666666666666664" />

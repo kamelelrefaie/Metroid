@@ -49,6 +49,13 @@ class SettingsFragment : Fragment() {
 
         }
 
+        fragmentSettingsBinding.cvEditProfile.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToEditProfileFragment())
+            if (requireActivity() is HomeActivity) {
+                (activity as HomeActivity).hideBottomNavigationView()
+            }
+        }
+
         return fragmentSettingsBinding.root
     }
 
