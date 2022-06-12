@@ -27,10 +27,12 @@ object Constants {
         "Halayeb", "Shalateen", "Taba", "Kafr ElShiekh", "Kafr ElDawar"
     )
 
+    val METRO_LINES = arrayListOf("First Line","Second Line" ,"Third Line")
+
     val classList = arrayListOf("A", "B", "C")
 
 
-    private val FIRST_LINE = arrayListOf(
+     val FIRST_LINE = arrayListOf(
         "",
         "New El-Marg",
         "El-Marg",
@@ -68,7 +70,7 @@ object Constants {
         "Ain Helwan",
         "Helwan"
     )
-    private val SECOND_LINE = arrayListOf(
+     val SECOND_LINE = arrayListOf(
         "",
         "Shubra El-Kheima",
         "Kolleyet El-Zeraa",
@@ -93,7 +95,7 @@ object Constants {
     )
 
 
-    private val THIRD_LINE = arrayListOf(
+     val THIRD_LINE = arrayListOf(
         "",
         "Attaba",
         "Bab El-Shaarya",

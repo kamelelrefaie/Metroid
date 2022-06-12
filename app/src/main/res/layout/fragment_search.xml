@@ -49,6 +49,7 @@
                     android:weightSum="100">
 
                     <TextView
+                        android:id="@+id/tvFrom"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="45"
@@ -66,6 +67,7 @@
                         android:src="@drawable/ic_swap_horiz_white" />
 
                     <TextView
+                        android:id="@+id/tvTo"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="45"
@@ -79,7 +81,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearLayout"
@@ -110,13 +112,36 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:textColorHint="#FF8A99AF">
 
-                        <EditText
+                        <AutoCompleteTextView
+                            android:id="@+id/actMetroLineFrom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/calibri"
+                            android:hint="Metro Line"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textColorHint="#FF8A99AF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actFrom"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:drawablePadding="16dp"
@@ -129,14 +154,35 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textColorHint="#FF8A99AF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actMetroLineTo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/calibri"
+                            android:hint="Metro Line"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
                         android:layout_marginBottom="8dp"
                         android:textColorHint="#FF8A99AF">
 
-                        <EditText
+                        <AutoCompleteTextView
+                            android:id="@+id/actTo"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:drawablePadding="16dp"
@@ -152,28 +198,23 @@
 
             </androidx.cardview.widget.CardView>
 
+
             <Button
                 android:id="@+id/btnSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/calibri"
                 android:text="Search"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                />
-
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:id="@+id/searchItem"
-                layout="@layout/item_reservation"
-                />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </ScrollView>
+
 
 </RelativeLayout>
