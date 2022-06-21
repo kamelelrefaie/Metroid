@@ -5,22 +5,23 @@ import android.content.Intent
 import android.nfc.NdefMessage
 import android.nfc.NfcAdapter
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.example.metroid.R
-import com.example.metroid.databinding.ActivityHomeBinding
 import com.example.metroid.databinding.ActivityNfcPageBinding
+import com.example.metroid.ui.view.viewmodel.main_cycle.MetroViewModel
 import com.example.metroid.utils.Constants.getFirstLine
 import com.example.metroid.utils.Constants.getSecondLine
 import com.example.metroid.utils.Constants.getThirdLine
 import com.example.metroid.utils.parser.NdefMessageParser
-import timber.log.Timber
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
+
+@AndroidEntryPoint
 class NfcPageActivity : AppCompatActivity() {
     private var counter = 2
     private lateinit var activityNfcPageBinding: ActivityNfcPageBinding
@@ -39,11 +40,15 @@ class NfcPageActivity : AppCompatActivity() {
 
     private val bSadatKey = 11
     private val bShohadaKey = 8
+   private lateinit var  viewModel:MetroViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityNfcPageBinding = ActivityNfcPageBinding.inflate(layoutInflater)
         setContentView(activityNfcPageBinding.root)
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this)
+
+        viewModel = ViewModelProvider(this)[MetroViewModel::class.java]
+
 
         if (checkNFCEnable()) {
             mPendingIntent = PendingIntent.getActivity(
@@ -60,7 +65,11 @@ class NfcPageActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        mNfcAdapter?.enableForegroundDispatch(this, mPendingIntent, null, null)
+        try {
+            mNfcAdapter?.enableForegroundDispatch(this, mPendingIntent, null, null)
+        }catch (e:Exception){
+            Log.e("nfc",e.toString())
+        }
     }
 
 
@@ -140,6 +149,15 @@ class NfcPageActivity : AppCompatActivity() {
 
             activityNfcPageBinding.tvPriceEditable.text = "$price L.E"
             counter--
+
+            //send data to server
+            try {
+                viewModel.postTrip(price,firstStationName,secondStationName,this)
+
+            }catch (e:Exception){
+                Log.e("viewmodel","$e")
+            }
+
         } else if (counter == 0) {
             Toast.makeText(this, "plz go back to main menu ", Toast.LENGTH_SHORT).show()
         }

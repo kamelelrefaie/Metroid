@@ -46,4 +46,14 @@ interface MetroidApi {
     suspend fun submitFeedback(
         @Body feedbackReq: FeedBackRequest
     ): Login
+
+    @POST("/api/v1/home/metro/add/trip")
+    suspend fun postTrip(
+        @Body metroTripRequest: MetroTripRequest
+    ): Login
+
+    @GET("/api/v1/home/metro/add/trip")
+    suspend fun getTripCreditAndTrips(
+        @Query("user_id") userId: Long
+    ): MetroCreditTripResponse
 }

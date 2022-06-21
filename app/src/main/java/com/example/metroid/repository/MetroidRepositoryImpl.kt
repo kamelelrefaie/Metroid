@@ -56,5 +56,13 @@ class MetroidRepositoryImpl @Inject constructor(
         return metroidApi.submitFeedback(feedbackReq)
     }
 
+    override suspend fun postTrip(metroTripRequest: MetroTripRequest): Login {
+        return metroidApi.postTrip(metroTripRequest)
+    }
+
+    override suspend fun getTripCreditAndTrips(userId: Long): MetroCreditTripResponse {
+        return metroidApi.getTripCreditAndTrips(userId)
+    }
+
 
 }

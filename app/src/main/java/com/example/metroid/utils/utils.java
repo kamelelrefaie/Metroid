@@ -1,8 +1,6 @@
 package com.example.metroid.utils;
 
-/**
- * Created by Qifan on 05/12/2018.
- */
+
 public class utils {
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
