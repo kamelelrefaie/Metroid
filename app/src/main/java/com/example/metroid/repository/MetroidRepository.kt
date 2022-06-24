@@ -17,6 +17,8 @@ interface MetroidRepository {
     suspend fun getTicketInfo(userId: Long): TicketInfoData
     suspend fun deleteTicket(userId: Long): Login
     suspend fun submitFeedback(feedbackReq: FeedBackRequest): Login
-    suspend fun postTrip( metroTripRequest: MetroTripRequest): Login
+    suspend fun postTrip(metroTripRequest: MetroTripRequest): Login
     suspend fun getTripCreditAndTrips(userId: Long): MetroCreditTripResponse
+    suspend fun updateProfile(id: Long, updateProfileData: UpdateProfileData): Login
+    suspend fun getMetroTrips(userId: Long): GetMetroTripsHistoryFromApi
 }

@@ -64,5 +64,13 @@ class MetroidRepositoryImpl @Inject constructor(
         return metroidApi.getTripCreditAndTrips(userId)
     }
 
+    override suspend fun updateProfile(id: Long, updateProfileData: UpdateProfileData): Login {
+        return metroidApi.updateProfile(id,updateProfileData)
+    }
+
+    override suspend fun getMetroTrips(userId: Long): GetMetroTripsHistoryFromApi {
+        return metroidApi.getMetroTrips(userId)
+    }
+
 
 }

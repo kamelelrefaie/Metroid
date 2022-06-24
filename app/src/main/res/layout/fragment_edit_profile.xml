@@ -221,7 +221,7 @@
                         android:drawableLeft="@drawable/ic_phone"
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/calibri"
-                        android:hint="Phone"
+                        android:hint="Phone: +20"
                         android:inputType="phone"
                         android:maxLines="1"
                         android:textColor="@android:color/black"

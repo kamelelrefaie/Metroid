@@ -1,6 +1,9 @@
 package com.example.metroid.ui.view.settings_cycle
 
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.metroid.databinding.FragmentShowTicketBinding
 import com.example.metroid.model.remote.responses.TicketInfoData
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
@@ -36,12 +40,17 @@ class ShowTicketFragment : Fragment() {
         mReservationViewModel =
             ViewModelProvider(requireActivity())[ReservationViewModel::class.java]
 
+        if(!checkForInternet(requireActivity())){
+            drawLayout(false)
+        }
+
         fragmentShowTicketBinding.included.tryAgainButton.setOnClickListener {
             runBlocking {
                 try {
                     val userData = mReservationViewModel.getPrefData(requireActivity())
                     userId = userData.id
                     ticketInfoData = mReservationViewModel.getTicketInfo(userId)
+                    changeLayout()
                     drawLayout(true)
                 } catch (e: Exception) {
                     Toast.makeText(
@@ -52,14 +61,16 @@ class ShowTicketFragment : Fragment() {
                     drawLayout(false)
                 }
             }
-            changeLayout()
         }
+
         runBlocking {
             try {
                 val userData = mReservationViewModel.getPrefData(requireActivity())
                 userId = userData.id
                 ticketInfoData = mReservationViewModel.getTicketInfo(userId)
 
+
+                changeLayout()
             } catch (e: Exception) {
                 Toast.makeText(
                     requireActivity(),
@@ -71,7 +82,7 @@ class ShowTicketFragment : Fragment() {
         }
 
 
-        changeLayout()
+
         return fragmentShowTicketBinding.root
     }
 
@@ -96,12 +107,16 @@ class ShowTicketFragment : Fragment() {
 
                 fragmentShowTicketBinding.tvArrCalender.setText(formatDateTime)
                 fragmentShowTicketBinding.tvDeptCalender.setText(formatDateTime2)
+
+                fragmentShowTicketBinding.included.root.visibility = View.GONE
+
             } else {
                 fragmentShowTicketBinding.ly.visibility = View.GONE
                 fragmentShowTicketBinding.ly2.visibility = View.GONE
                 fragmentShowTicketBinding.included.root.visibility = View.GONE
                 fragmentShowTicketBinding.lyText.visibility = View.VISIBLE
                 fragmentShowTicketBinding.btnBuy.setOnClickListener {
+                    findNavController().navigate(ShowTicketFragmentDirections.actionShowTicketFragmentToReservationFragment())
 
                 }
             }
@@ -119,6 +134,47 @@ class ShowTicketFragment : Fragment() {
             fragmentShowTicketBinding.ly.visibility = View.GONE
             fragmentShowTicketBinding.ly2.visibility = View.GONE
             fragmentShowTicketBinding.included.root.visibility = View.VISIBLE
+        }
+    }
+
+
+
+    private fun checkForInternet(context: Context): Boolean {
+
+        // register activity with the connectivity manager service
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        // if the android version is equal to M
+        // or greater we need to use the
+        // NetworkCapabilities to check what type of
+        // network has the internet connection
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            // Returns a Network object corresponding to
+            // the currently active default data network.
+            val network = connectivityManager.activeNetwork ?: return false
+
+            // Representation of the capabilities of an active network.
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when {
+                // Indicates this network uses a Wi-Fi transport,
+                // or WiFi has network connectivity
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+
+                // Indicates this network uses a Cellular transport. or
+                // Cellular has network connectivity
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+
+                // else return false
+                else -> false
+            }
+        } else {
+            // if the android version is below M
+            @Suppress("DEPRECATION") val networkInfo =
+                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
         }
     }
 }

@@ -56,4 +56,16 @@ interface MetroidApi {
     suspend fun getTripCreditAndTrips(
         @Query("user_id") userId: Long
     ): MetroCreditTripResponse
+
+    @GET("/api/v1/home/metro/add/trip/getTrips")
+    suspend fun getMetroTrips(
+        @Query("user_id") userId: Long
+    ): GetMetroTripsHistoryFromApi
+
+    @PUT("/api/v1/registration/edit")
+    suspend fun updateProfile(
+        @Query("id") id: Long,
+        @Body updateProfileData: UpdateProfileData
+    ): Login
+
 }

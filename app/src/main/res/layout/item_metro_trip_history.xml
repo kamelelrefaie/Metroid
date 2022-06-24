@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_extra_bold"
             android:text="2071/10/20 : "
+            android:layout_marginRight="10dp"
             android:textColor="@color/white"
             android:textSize="22sp"
 

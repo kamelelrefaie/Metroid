@@ -56,6 +56,14 @@ class SettingsFragment : Fragment() {
             }
         }
 
+        fragmentSettingsBinding.cvMetroTripsHistory.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToMetroTripHistoryFragment())
+            if (requireActivity() is HomeActivity) {
+                (activity as HomeActivity).hideBottomNavigationView()
+            }
+        }
+
+
         return fragmentSettingsBinding.root
     }
 
