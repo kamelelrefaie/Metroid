@@ -5,11 +5,24 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.19074074074074074" />
         <entry key="..\:/Metroid/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/activity_nfc_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/dialog_rate_us.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_cancel_ticket.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_confirm_ticket.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_confirmation_ticket_show.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/fragment_edit_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/fragment_feedback.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_first_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_metro_trip_history.xml" value="0.31851851851851853" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_on_boarding_view_pager.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/fragment_reservation.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/fragment_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/fragment_third_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Metroid/app/src/main/res/layout/item_list_reservation.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/item_metro_trip_history.xml" value="0.25" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/item_reservation.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/item_train.xml" value="0.36666666666666664" />
+        <entry key="..\:/Metroid/app/src/main/res/layout/no_internet_connection.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.193" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable/google.xml" value="0.193" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Metroid/app/src/main/res/drawable/ic_email.xml" value="0.193" />
