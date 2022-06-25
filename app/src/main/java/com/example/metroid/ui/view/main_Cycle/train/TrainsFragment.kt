@@ -22,6 +22,7 @@ import com.example.metroid.databinding.NoInternetConnectionBinding
 import com.example.metroid.model.remote.responses.TripResponseItem
 import com.example.metroid.ui.adapter.ReservationAdapter
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -80,8 +81,13 @@ class TrainsFragment : Fragment() {
                 }
             }
         } catch (e: Exception) {
-
-            Toast.makeText(requireActivity(), "$e", Toast.LENGTH_SHORT).show()
+            FancyToast.makeText(
+                requireActivity(),
+                "please, check your internet connection",
+                FancyToast.LENGTH_LONG,
+                FancyToast.ERROR,
+                true
+            ).show()
         }
 
     }

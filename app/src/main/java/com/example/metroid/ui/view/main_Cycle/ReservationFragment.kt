@@ -20,6 +20,7 @@ import com.example.metroid.ui.adapter.ReservationAdapter
 import com.example.metroid.ui.view.viewmodel.login_cycle.LoginViewModel
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
 import com.example.metroid.utils.Constants.trainStationNameList
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.launch
 
@@ -67,8 +68,13 @@ class ReservationFragment : Fragment() {
 
         fragmentReservationBinding.btnSearch.setOnClickListener {
             if (firstStation == endStation || firstStation.isEmpty() || endStation.isEmpty()) {
-                Toast.makeText(requireActivity(), "Please choose right route", Toast.LENGTH_SHORT)
-                    .show()
+                FancyToast.makeText(
+                    requireActivity(),
+                    "please, choose right root",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
             } else {
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
@@ -87,10 +93,12 @@ class ReservationFragment : Fragment() {
                         }
 
                     } catch (e: Exception) {
-                        Toast.makeText(
+                        FancyToast.makeText(
                             requireActivity(),
-                            "please,check your internet connection.",
-                            Toast.LENGTH_SHORT
+                            "please, check your internet connection",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            true
                         ).show()
                     }
 

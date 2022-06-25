@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.metroid.databinding.FragmentShowTicketBinding
 import com.example.metroid.model.remote.responses.TicketInfoData
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.*
 import java.lang.Exception
 import java.time.format.DateTimeFormatter
@@ -53,10 +54,12 @@ class ShowTicketFragment : Fragment() {
                     changeLayout()
                     drawLayout(true)
                 } catch (e: Exception) {
-                    Toast.makeText(
+                    FancyToast.makeText(
                         requireActivity(),
                         "please, check your internet connection",
-                        Toast.LENGTH_SHORT
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.ERROR,
+                        true
                     ).show()
                     drawLayout(false)
                 }
@@ -72,10 +75,12 @@ class ShowTicketFragment : Fragment() {
 
                 changeLayout()
             } catch (e: Exception) {
-                Toast.makeText(
+                FancyToast.makeText(
                     requireActivity(),
                     "please, check your internet connection",
-                    Toast.LENGTH_SHORT
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
                 ).show()
                 drawLayout(false)
             }
@@ -90,23 +95,23 @@ class ShowTicketFragment : Fragment() {
     private fun changeLayout(){
         try {
             if (ticketInfoData.message == 1) {
-                fragmentShowTicketBinding.tvPrice.setText("${ticketInfoData.price} L.E")
-                fragmentShowTicketBinding.tvStateFrom.setText("${ticketInfoData.stateArr}")
-                fragmentShowTicketBinding.tvStateTo.setText("${ticketInfoData.stateDept}")
-                fragmentShowTicketBinding.tvUserName.setText("${ticketInfoData.firstName}")
-                fragmentShowTicketBinding.tvStationFromName.setText(ticketInfoData.nameArr)
-                fragmentShowTicketBinding.tvStationToName.setText(ticketInfoData.nameDept)
-                fragmentShowTicketBinding.tvSeats.setText(ticketInfoData.seats.toString())
-                fragmentShowTicketBinding.tvTripId.setText(ticketInfoData.tripId.toString())
+                fragmentShowTicketBinding.tvPrice.text = "${ticketInfoData.price} L.E"
+                fragmentShowTicketBinding.tvStateFrom.text = ticketInfoData.stateArr
+                fragmentShowTicketBinding.tvStateTo.text = ticketInfoData.stateDept
+                fragmentShowTicketBinding.tvUserName.text = ticketInfoData.firstName
+                fragmentShowTicketBinding.tvStationFromName.text = ticketInfoData.nameArr
+                fragmentShowTicketBinding.tvStationToName.text = ticketInfoData.nameDept
+                fragmentShowTicketBinding.tvSeats.text = ticketInfoData.seats.toString()
+                fragmentShowTicketBinding.tvTripId.text = ticketInfoData.tripId.toString()
 
 
-                fragmentShowTicketBinding.tvConfirmedAt.setText(ticketInfoData.confirmDate)
+                fragmentShowTicketBinding.tvConfirmedAt.text = ticketInfoData.confirmDate
                 val format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
                 val formatDateTime: String = ticketInfoData.arrTime.format(format)
                 val formatDateTime2: String = ticketInfoData.deptTime.format(format)
 
-                fragmentShowTicketBinding.tvArrCalender.setText(formatDateTime)
-                fragmentShowTicketBinding.tvDeptCalender.setText(formatDateTime2)
+                fragmentShowTicketBinding.tvArrCalender.text = formatDateTime
+                fragmentShowTicketBinding.tvDeptCalender.text = formatDateTime2
 
                 fragmentShowTicketBinding.included.root.visibility = View.GONE
 
@@ -121,8 +126,13 @@ class ShowTicketFragment : Fragment() {
                 }
             }
         } catch (e: Exception) {
-            Toast.makeText(requireActivity(), "no internet connection", Toast.LENGTH_SHORT).show()
-        }
+            FancyToast.makeText(
+                requireActivity(),
+                "please, check your internet connection",
+                FancyToast.LENGTH_LONG,
+                FancyToast.ERROR,
+                true
+            ).show()        }
 
     }
     private fun drawLayout(draw: Boolean) {

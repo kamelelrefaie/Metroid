@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="40sp"
-                android:text="you don't have any tickets"
+                android:text="@string/you_don_t_have_any_tickets"
                 android:textColor="@color/primaryColor"
                 android:fontFamily="@font/open_sans_regular"
                 />
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryColor"
-                android:text="buy one now"
+                android:text="@string/buy_one_now"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 />
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="TICKET"
+                    android:text="@string/ticket"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="36sp"
@@ -200,7 +200,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="PASSENGER"
+                        android:text="@string/passenger"
                         android:textSize="12sp" />
 
                     <TextView
@@ -223,7 +223,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="SEAT"
+                        android:text="@string/seat"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
 
@@ -258,7 +258,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TRIP"
+                        android:text="@string/trip"
                         android:textAlignment="textStart"
                         android:textSize="12sp" />
 
@@ -283,7 +283,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="PRICE"
+                        android:text="@string/price"
                         android:textAlignment="center"
                         android:textSize="12sp" />
 
@@ -309,7 +309,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CONFIRMED AT"
+                        android:text="@string/confirmed_at"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
 

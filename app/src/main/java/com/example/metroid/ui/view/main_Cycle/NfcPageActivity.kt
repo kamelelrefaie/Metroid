@@ -17,6 +17,7 @@ import com.example.metroid.utils.Constants.getFirstLine
 import com.example.metroid.utils.Constants.getSecondLine
 import com.example.metroid.utils.Constants.getThirdLine
 import com.example.metroid.utils.parser.NdefMessageParser
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -102,7 +103,7 @@ class NfcPageActivity : AppCompatActivity() {
         }
 
         if (counter == 2) {
-            activityNfcPageBinding.tvWelcome.setText("Touch the machine to exit")
+            activityNfcPageBinding.tvWelcome.text = "Touch the machine to exit"
             activityNfcPageBinding.ll.visibility = View.VISIBLE
 
             //get first station key
@@ -114,7 +115,7 @@ class NfcPageActivity : AppCompatActivity() {
 
             counter--
         } else if (counter == 1) {
-            activityNfcPageBinding.tvWelcome.setText("Return To MainMenu")
+            activityNfcPageBinding.tvWelcome.text = "Return To MainMenu"
             activityNfcPageBinding.tvPriceEditable.visibility = View.VISIBLE
 
             //get second station key
@@ -159,7 +160,13 @@ class NfcPageActivity : AppCompatActivity() {
             }
 
         } else if (counter == 0) {
-            Toast.makeText(this, "plz go back to main menu ", Toast.LENGTH_SHORT).show()
+            FancyToast.makeText(
+                this,
+                "please, go back to main menu",
+                FancyToast.LENGTH_LONG,
+                FancyToast.INFO,
+                true
+            ).show()
         }
 
     }

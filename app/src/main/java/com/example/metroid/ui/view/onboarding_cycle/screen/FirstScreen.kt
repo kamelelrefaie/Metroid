@@ -29,10 +29,12 @@ class FirstScreen : Fragment() {
         // Inflate the layout for this fragment
         fragmentFirstScreenBinding =
             FragmentFirstScreenBinding.inflate(layoutInflater)
+
         val viewPager = activity?.findViewById<ViewPager2>(R.id.fragment_vp)
-       fragmentFirstScreenBinding?.next?.setOnClickListener{
-          viewPager?.currentItem =1
-       }
+        fragmentFirstScreenBinding?.next?.setOnClickListener {
+            viewPager?.currentItem = 1
+        }
+
         return fragmentFirstScreenBinding?.root
     }
 

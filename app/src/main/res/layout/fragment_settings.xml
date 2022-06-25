@@ -26,7 +26,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="monospace"
-                android:text="Settings"
+                android:text="@string/settings"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/gl"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
                             android:id="@+id/tvItem"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Show Train Ticket" />
+                            android:text="@string/show_train_ticket" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -97,7 +97,7 @@
                             android:id="@+id/tvItem2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Delete Train Ticket" />
+                            android:text="@string/delete_train_ticket" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -126,7 +126,7 @@
                             android:id="@+id/tvItem3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="feedback" />
+                            android:text="@string/feedback" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -156,7 +156,7 @@
                             android:id="@+id/tvItem4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Edit Profile" />
+                            android:text="@string/edit_profile" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -185,7 +185,7 @@
                             android:id="@+id/tvItem5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Metro Trip History" />
+                            android:text="@string/metro_trip_history" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -199,7 +199,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="Log Out"
+        android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
 
         />

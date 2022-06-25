@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="FEEDBACK"
+                android:text="@string/feedback"
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/white"
-                android:hint="Subject"
+                android:hint="@string/subject"
                 android:padding="10dp">
 
                 <EditText
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@color/white"
-                android:hint="Content"
+                android:hint="@string/content"
                 android:padding="10dp">
 
                 <EditText
@@ -75,8 +75,9 @@
         android:id="@+id/btnSubmit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        style="@style/ThemeOverlay.Material3.Button.TextButton"
         android:background="@color/primaryColor"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -73,7 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:fontFamily="@font/gotham"
-                android:text="To"
+                android:text="@string/to"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -96,7 +96,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:fontFamily="@font/gotham"
-                android:text="From"
+                android:text="@string/from"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -115,7 +115,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:fontFamily="@font/gotham"
-                android:text="To"
+                android:text="@string/to"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -129,7 +129,7 @@
             android:layout_below="@+id/ll"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/print_clearly"
-            android:text="Price L.E"
+            android:text="@string/price_l_e"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
@@ -155,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Touch The Machine to Pass"
+        android:text="@string/touch_the_machine_to_pass"
         android:textSize="20sp"
         android:textColor="@color/primaryColor"
         android:fontFamily="@font/print_clearly"

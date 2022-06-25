@@ -15,6 +15,7 @@ import com.example.metroid.model.remote.responses.SeatModel
 import com.example.metroid.model.remote.responses.TicketModel
 import com.example.metroid.model.remote.responses.TicketInfoData
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.*
 import java.lang.Exception
 import java.time.format.DateTimeFormatter
@@ -48,27 +49,33 @@ class ConfirmationTicketShowFragment : Fragment() {
         }
 
      try {
-         fragmentConfirmationTicketShowBinding.tvPrice.setText("${ticketInfoData.price} L.E")
-         fragmentConfirmationTicketShowBinding.tvStateFrom.setText("${ticketInfoData.stateArr}")
-         fragmentConfirmationTicketShowBinding.tvStateTo.setText("${ticketInfoData.stateDept}")
-         fragmentConfirmationTicketShowBinding.tvUserName.setText("${ticketInfoData.firstName}")
-         fragmentConfirmationTicketShowBinding.tvStationFromName.setText(ticketInfoData.nameArr)
-         fragmentConfirmationTicketShowBinding.tvStationToName.setText(ticketInfoData.nameDept)
-         fragmentConfirmationTicketShowBinding.tvSeats.setText(ticketInfoData.seats.toString())
-         fragmentConfirmationTicketShowBinding.tvTripId.setText(ticketInfoData.tripId.toString())
+         fragmentConfirmationTicketShowBinding.tvPrice.text = "${ticketInfoData.price} L.E"
+         fragmentConfirmationTicketShowBinding.tvStateFrom.text = "${ticketInfoData.stateArr}"
+         fragmentConfirmationTicketShowBinding.tvStateTo.text = "${ticketInfoData.stateDept}"
+         fragmentConfirmationTicketShowBinding.tvUserName.text = "${ticketInfoData.firstName}"
+         fragmentConfirmationTicketShowBinding.tvStationFromName.text = ticketInfoData.nameArr
+         fragmentConfirmationTicketShowBinding.tvStationToName.text = ticketInfoData.nameDept
+         fragmentConfirmationTicketShowBinding.tvSeats.text = ticketInfoData.seats.toString()
+         fragmentConfirmationTicketShowBinding.tvTripId.text = ticketInfoData.tripId.toString()
 
 
-         fragmentConfirmationTicketShowBinding.tvConfirmedAt.setText(ticketInfoData.confirmDate)
+         fragmentConfirmationTicketShowBinding.tvConfirmedAt.text = ticketInfoData.confirmDate
          val format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
          val formatDateTime: String = ticketInfoData.arrTime.format(format)
          val formatDateTime2: String = ticketInfoData.deptTime.format(format)
 
-         fragmentConfirmationTicketShowBinding.tvArrCalender.setText(formatDateTime)
-         fragmentConfirmationTicketShowBinding.tvDeptCalender.setText(formatDateTime2)
+         fragmentConfirmationTicketShowBinding.tvArrCalender.text = formatDateTime
+         fragmentConfirmationTicketShowBinding.tvDeptCalender.text = formatDateTime2
 
      }catch (e :Exception){
          Log.e("asd",e.toString())
-         Toast.makeText(requireActivity(), "this ${e.toString()}", Toast.LENGTH_SHORT).show()
+         FancyToast.makeText(
+             requireActivity(),
+             "$e",
+             FancyToast.LENGTH_LONG,
+             FancyToast.ERROR,
+             true
+         ).show()
      }
 
         return fragmentConfirmationTicketShowBinding.root

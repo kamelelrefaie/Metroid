@@ -15,6 +15,7 @@ import com.example.metroid.databinding.FragmentLoginBinding
 import com.example.metroid.ui.view.main_Cycle.HomeActivity
 import com.example.metroid.ui.view.viewmodel.login_cycle.LoginViewModel
 import com.example.metroid.utils.Constants.checkEmail
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.launch
 
 
@@ -33,6 +34,7 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding.forgotPassword.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
         }
+
         mLoginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         fragmentLoginBinding.btnLogin.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
@@ -43,28 +45,40 @@ class LoginFragment : Fragment() {
 
 
 
-        //            var email = fragmentLoginBinding.inputEmail.text.toString()
-//            var password = fragmentLoginBinding.inputPassword.text.toString()
+//            val email = fragmentLoginBinding.inputEmail.text.toString()
+//            val password = fragmentLoginBinding.inputPassword.text.toString()
 //
 //            viewLifecycleOwner.lifecycleScope.launch {
+//
 //                if (mLoginViewModel.login(email, password)) {
-//                    Toast.makeText(requireActivity(), "login success", Toast.LENGTH_SHORT).show()
+//                    FancyToast.makeText(
+//                        requireActivity(),
+//                        "login success",
+//                        FancyToast.LENGTH_LONG,
+//                        FancyToast.INFO,
+//                        true
+//                    ).show()
 //                    startActivity(Intent(requireActivity(), HomeActivity::class.java))
 //                    requireActivity().finish()
+//
 //                } else
-//                    Toast.makeText(
+//                    FancyToast.makeText(
 //                        requireActivity(),
 //                        "login failure , type your password and email again",
-//                        Toast.LENGTH_SHORT
+//                        FancyToast.LENGTH_LONG,
+//                        FancyToast.INFO,
+//                        true
 //                    ).show()
-//
 //            }
+
+
+
         }
+
 
         fragmentLoginBinding.gotoRegister.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
         }
-
 
         return fragmentLoginBinding.root
     }

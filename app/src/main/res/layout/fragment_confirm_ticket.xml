@@ -51,7 +51,7 @@
                         android:id="@+id/etClass"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Class"
+                        android:hint="@string/classTrain"
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +67,7 @@
                         android:id="@+id/tieQuantity"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Quantity"
+                        android:hint="@string/quantity"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,7 +83,7 @@
                         android:id="@+id/tieSeatOne"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Seat Number"
+                        android:hint="@string/seat_number"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
                         android:id="@+id/tieSeatNumberTwo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Seat Number"
+                        android:hint="@string/seat_number"
                         android:inputType="number"
                         android:visibility="gone" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +118,7 @@
                         android:id="@+id/tieSeatNumberThree"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Seat Number"
+                        android:hint="@string/seat_number"
                         android:inputType="number"
                         android:visibility="gone" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -136,7 +136,7 @@
                         android:id="@+id/tieSeatNumberFour"
                              android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Seat Number"
+                        android:hint="@string/seat_number"
                         android:inputType="number"
                         android:visibility="gone" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -154,7 +154,7 @@
                         android:id="@+id/tieSeatNumberFive"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Seat Number"
+                        android:hint="@string/seat_number"
                         android:inputType="number"
                         android:visibility="gone" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -176,7 +176,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@color/primaryColor"
-                    android:text="Confirm Ticket"
+                    android:text="@string/confirm_ticket"
                     android:textColor="@color/primaryTextColor" />
             </LinearLayout>
 

@@ -14,6 +14,7 @@ import com.example.metroid.databinding.FragmentMetroTripHistoryBinding
 import com.example.metroid.model.remote.responses.GetMetroTripsHistoryFromApiItem
 import com.example.metroid.ui.adapter.TripHistoryAdapter
 import com.example.metroid.ui.view.viewmodel.main_cycle.MetroViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.launch
 
 class MetroTripHistoryFragment : Fragment() {
@@ -57,13 +58,16 @@ class MetroTripHistoryFragment : Fragment() {
                     binding.tvNoTrips.visibility = View.GONE
             }
 
-
-
             }
 
         } catch (e: Exception) {
-            Toast.makeText(requireActivity(), "$e", Toast.LENGTH_SHORT).show()
-        }
+            FancyToast.makeText(
+                requireActivity(),
+                "please, check your internet connection",
+                FancyToast.LENGTH_LONG,
+                FancyToast.ERROR,
+                true
+            ).show()        }
 
     }
 

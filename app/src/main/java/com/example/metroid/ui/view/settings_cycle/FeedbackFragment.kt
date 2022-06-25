@@ -19,6 +19,7 @@ import com.example.metroid.model.remote.responses.FeedBackRequest
 import com.example.metroid.model.remote.responses.Login
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
 import com.example.metroid.ui.view.viewmodel.settings_cycle.SettingsViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -42,11 +43,15 @@ class FeedbackFragment : Fragment() {
             if (fragmentFeedbackBinding.edContent.text.toString()
                     .isEmpty() || fragmentFeedbackBinding.edSubject.text.toString().isEmpty()
             ) {
-                Toast.makeText(
+
+                FancyToast.makeText(
                     requireActivity(),
-                    "Please fill content and subject",
-                    Toast.LENGTH_SHORT
+                    "please, Fill content and subject",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.WARNING,
+                    true
                 ).show()
+
             } else {
                 val content = fragmentFeedbackBinding.edContent.text.toString()
                 val subject = fragmentFeedbackBinding.edSubject.text.toString()
@@ -82,13 +87,23 @@ class FeedbackFragment : Fragment() {
                             )
                             msg = mSettingsViewModel.message.value!!
                         }
-                        Toast.makeText(
+
+                        FancyToast.makeText(
                             requireActivity(),
-                            "Your feedback sent ",
-                            Toast.LENGTH_SHORT
+                            "Your feedback is sent",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS,
+                            true
                         ).show()
-                    }catch (e:Exception){
-                        Toast.makeText(requireActivity(), "$e", Toast.LENGTH_SHORT).show()
+
+                    } catch (e: Exception) {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "please, check your internet connection",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            true
+                        ).show()
                     }
                     rateUsDialog.dismiss()
                 }
@@ -96,8 +111,6 @@ class FeedbackFragment : Fragment() {
             }
 
         }
-
-
 
         return fragmentFeedbackBinding.root
     }

@@ -15,6 +15,7 @@ import com.example.metroid.databinding.FragmentSignUpBinding
 import com.example.metroid.model.remote.responses.RegisterBody
 import com.example.metroid.ui.view.viewmodel.login_cycle.LoginViewModel
 import com.example.metroid.utils.Constants.checkEmail
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.launch
 
 class SignUpFragment : Fragment() {
@@ -44,21 +45,45 @@ class SignUpFragment : Fragment() {
             val password = fragmentSignUpBinding.inputPassword.text.toString()
             val confirmPassword = fragmentSignUpBinding.inputConfirmPassword.text.toString()
 
-            if (password != confirmPassword){
-                Toast.makeText(requireActivity(), "password not match confirm", Toast.LENGTH_SHORT).show()
+            if (password != confirmPassword) {
+                FancyToast.makeText(
+                    requireActivity(),
+                    "password not match confirm",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
             }
 
-            if(!checkEmail(email)){
-                Toast.makeText(requireActivity(), "enter valid email", Toast.LENGTH_SHORT).show()
+            if (!checkEmail(email)) {
+                FancyToast.makeText(
+                    requireActivity(),
+                    "enter valid email",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
             }
 
-            val body = RegisterBody(firstName, secondName,email,password)
+            val body = RegisterBody(firstName, secondName, email, password)
             viewLifecycleOwner.lifecycleScope.launch {
-                var checkRequest=mLoginViewModel.register(body)
-                if (checkRequest){
-                    Toast.makeText(requireActivity(), "check your email for confirmation", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(requireActivity(), "plz enter valid information", Toast.LENGTH_SHORT).show()
+                val checkRequest = mLoginViewModel.register(body)
+                if (checkRequest) {
+                    FancyToast.makeText(
+                        requireActivity(),
+                        "check your email for confirmation",
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.INFO,
+                        true
+                    ).show()
+                } else {
+                    FancyToast.makeText(
+                        requireActivity(),
+                        "enter valid information",
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.ERROR,
+                        true
+                    ).show()
                 }
 
             }

@@ -36,6 +36,7 @@ class SecondScreen : Fragment() {
         fragmentSecondScreenBinding?.next?.setOnClickListener{
             viewPager?.currentItem =2
         }
+
         return fragmentSecondScreenBinding?.root
     }
 

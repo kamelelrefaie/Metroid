@@ -21,6 +21,7 @@ import com.example.metroid.model.remote.responses.TicketModel
 
 import com.example.metroid.ui.view.viewmodel.main_cycle.ReservationViewModel
 import com.example.metroid.utils.Constants
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -46,7 +47,6 @@ class ConfirmTicketFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             ticketInfoData = mReservationViewModel.getTicketInfo(userId = args.userId)
-            Toast.makeText(requireActivity(), "fadsf", Toast.LENGTH_SHORT).show()
         }
 
         val arrayAdapter = ArrayAdapter(
@@ -90,11 +90,22 @@ class ConfirmTicketFragment : Fragment() {
         fragmentConfirmTicketBinding.btnConfirm.setOnClickListener {
 
             if (className.isEmpty() || quantity == 0 || price == 0) {
-                Toast.makeText(requireActivity(), "fill with appropriate data", Toast.LENGTH_SHORT)
-                    .show()
+                FancyToast.makeText(
+                    requireActivity(),
+                    "fill with appropriate data",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
+
             } else if (ticketInfoData.message == 1) {
-                Toast.makeText(requireActivity(), "you already have a ticket", Toast.LENGTH_SHORT)
-                    .show()
+                FancyToast.makeText(
+                    requireActivity(),
+                    "you already have a ticket",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.WARNING,
+                    true
+                ).show()
             } else {
                 when (quantity) {
                     5 -> {
@@ -104,10 +115,13 @@ class ConfirmTicketFragment : Fragment() {
                             fragmentConfirmTicketBinding.tieSeatNumberFour.text.isNullOrBlank() ||
                             fragmentConfirmTicketBinding.tieSeatNumberFive.text.isNullOrBlank()
                         ) {
-                            Toast.makeText(
+
+                            FancyToast.makeText(
                                 requireActivity(),
                                 "please fill seats",
-                                Toast.LENGTH_SHORT
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.WARNING,
+                                true
                             ).show()
                         } else {
                             val listOfStrings = mutableListOf<String>()
@@ -118,10 +132,12 @@ class ConfirmTicketFragment : Fragment() {
                             listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberFive.text.toString())
 
                             if (checkDuplicateUsingAdd(listOfStrings as ArrayList<String>)) {
-                                Toast.makeText(
+                                FancyToast.makeText(
                                     requireActivity(),
                                     "please don't choose same seat",
-                                    Toast.LENGTH_SHORT
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.WARNING,
+                                    true
                                 ).show()
                             } else {
                                 listOfSeats = mutableListOf()
@@ -170,19 +186,24 @@ class ConfirmTicketFragment : Fragment() {
                                         ticketModel
                                     )
                                     if (message == "success") {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
                                             "success",
-                                            Toast.LENGTH_SHORT
-                                        )
-                                            .show()
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.SUCCESS,
+                                            true
+                                        ).show()
+
                                         findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
                                     } else {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
-                                            "$message",
-                                            Toast.LENGTH_SHORT
+                                            message,
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.WARNING,
+                                            true
                                         ).show()
+
                                     }
                                 }
                             }
@@ -194,10 +215,12 @@ class ConfirmTicketFragment : Fragment() {
                             fragmentConfirmTicketBinding.tieSeatNumberThree.text.isNullOrBlank() ||
                             fragmentConfirmTicketBinding.tieSeatNumberFour.text.isNullOrBlank()
                         ) {
-                            Toast.makeText(
+                            FancyToast.makeText(
                                 requireActivity(),
                                 "please fill seats",
-                                Toast.LENGTH_SHORT
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.WARNING,
+                                true
                             ).show()
                         } else {
                             val listOfStrings = mutableListOf<String>()
@@ -206,10 +229,12 @@ class ConfirmTicketFragment : Fragment() {
                             listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
                             listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberFour.text.toString())
                             if (checkDuplicateUsingAdd(listOfStrings as ArrayList<String>)) {
-                                Toast.makeText(
+                                FancyToast.makeText(
                                     requireActivity(),
                                     "please don't choose same seat",
-                                    Toast.LENGTH_SHORT
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.WARNING,
+                                    true
                                 ).show()
                             } else {
 
@@ -253,19 +278,22 @@ class ConfirmTicketFragment : Fragment() {
                                         ticketModel
                                     )
                                     if (message == "success") {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
                                             "success",
-                                            Toast.LENGTH_SHORT
-                                        )
-                                            .show()
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.SUCCESS,
+                                            true
+                                        ).show()
                                         findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
 
                                     } else {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
-                                            "$message",
-                                            Toast.LENGTH_SHORT
+                                            message,
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.WARNING,
+                                            true
                                         ).show()
                                     }
                                 }
@@ -278,10 +306,12 @@ class ConfirmTicketFragment : Fragment() {
                             fragmentConfirmTicketBinding.tieSeatNumberThree.text.isNullOrBlank()
 
                         ) {
-                            Toast.makeText(
+                            FancyToast.makeText(
                                 requireActivity(),
                                 "please fill seats",
-                                Toast.LENGTH_SHORT
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.WARNING,
+                                true
                             ).show()
 
                         } else {
@@ -291,10 +321,12 @@ class ConfirmTicketFragment : Fragment() {
                             listOfStrings.add(fragmentConfirmTicketBinding.tieSeatNumberThree.text.toString())
 
                             if (checkDuplicateUsingAdd(listOfStrings as ArrayList<String>)) {
-                                Toast.makeText(
+                                FancyToast.makeText(
                                     requireActivity(),
                                     "please don't choose same seat",
-                                    Toast.LENGTH_SHORT
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.WARNING,
+                                    true
                                 ).show()
                             } else {
 
@@ -331,19 +363,22 @@ class ConfirmTicketFragment : Fragment() {
                                         ticketModel
                                     )
                                     if (message == "success") {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
                                             "success",
-                                            Toast.LENGTH_SHORT
-                                        )
-                                            .show()
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.SUCCESS,
+                                            true
+                                        ).show()
                                         findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
 
                                     } else {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
-                                            "$message",
-                                            Toast.LENGTH_SHORT
+                                            message,
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.WARNING,
+                                            true
                                         ).show()
                                     }
                                 }
@@ -355,19 +390,23 @@ class ConfirmTicketFragment : Fragment() {
                                     fragmentConfirmTicketBinding.tieSeatNumberTwo.text.isNullOrBlank())
 
                         ) {
-                            Toast.makeText(
+                            FancyToast.makeText(
                                 requireActivity(),
                                 "please fill seats",
-                                Toast.LENGTH_SHORT
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.WARNING,
+                                true
                             ).show()
                         } else {
                             if ((fragmentConfirmTicketBinding.tieSeatOne.text.toString() ==
                                         fragmentConfirmTicketBinding.tieSeatNumberTwo.text.toString())
                             ) {
-                                Toast.makeText(
+                                FancyToast.makeText(
                                     requireActivity(),
                                     "please don't choose same seat",
-                                    Toast.LENGTH_SHORT
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.WARNING,
+                                    true
                                 ).show()
                             } else {
                                 listOfSeats = mutableListOf()
@@ -395,19 +434,22 @@ class ConfirmTicketFragment : Fragment() {
                                         ticketModel
                                     )
                                     if (message == "success") {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
                                             "success",
-                                            Toast.LENGTH_SHORT
-                                        )
-                                            .show()
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.SUCCESS,
+                                            true
+                                        ).show()
                                         findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
 
                                     } else {
-                                        Toast.makeText(
+                                        FancyToast.makeText(
                                             requireActivity(),
-                                            "$message",
-                                            Toast.LENGTH_SHORT
+                                            message,
+                                            FancyToast.LENGTH_LONG,
+                                            FancyToast.WARNING,
+                                            true
                                         ).show()
                                     }
                                 }
@@ -417,10 +459,12 @@ class ConfirmTicketFragment : Fragment() {
                     1 -> {
                         if (fragmentConfirmTicketBinding.tieSeatOne.text.isNullOrBlank()
                         ) {
-                            Toast.makeText(
+                            FancyToast.makeText(
                                 requireActivity(),
                                 "please fill seats",
-                                Toast.LENGTH_SHORT
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.WARNING,
+                                true
                             ).show()
                         } else {
                             listOfSeats = mutableListOf()
@@ -440,15 +484,22 @@ class ConfirmTicketFragment : Fragment() {
                                     ticketModel
                                 )
                                 if (message == "success") {
-                                    Toast.makeText(requireActivity(), "success", Toast.LENGTH_SHORT)
-                                        .show()
+                                    FancyToast.makeText(
+                                        requireActivity(),
+                                        "success",
+                                        FancyToast.LENGTH_LONG,
+                                        FancyToast.SUCCESS,
+                                        true
+                                    ).show()
                                     findNavController().navigate(ConfirmTicketFragmentDirections.actionConfirmTicketFragmentToConfirmationTicketShowFragment())
 
                                 } else {
-                                    Toast.makeText(
+                                    FancyToast.makeText(
                                         requireActivity(),
-                                        "$message",
-                                        Toast.LENGTH_SHORT
+                                        message,
+                                        FancyToast.LENGTH_LONG,
+                                        FancyToast.WARNING,
+                                        true
                                     ).show()
 
                                 }
@@ -471,8 +522,13 @@ class ConfirmTicketFragment : Fragment() {
                 fragmentConfirmTicketBinding.tieSeatNumberFour.visibility = View.GONE
                 fragmentConfirmTicketBinding.tieSeatNumberThree.visibility = View.GONE
                 fragmentConfirmTicketBinding.tieSeatNumberTwo.visibility = View.GONE
-                Toast.makeText(requireActivity(), "Please choose less than 6", Toast.LENGTH_SHORT)
-                    .show()
+                FancyToast.makeText(
+                    requireActivity(),
+                    "Please choose less than 6",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.INFO,
+                    true
+                ).show()
                 fragmentConfirmTicketBinding.tieQuantity.setText("")
             }
             quantity < 1 -> {
@@ -480,8 +536,13 @@ class ConfirmTicketFragment : Fragment() {
                 fragmentConfirmTicketBinding.tieSeatNumberFour.visibility = View.GONE
                 fragmentConfirmTicketBinding.tieSeatNumberThree.visibility = View.GONE
                 fragmentConfirmTicketBinding.tieSeatNumberTwo.visibility = View.GONE
-                Toast.makeText(requireActivity(), "Please choose more than 0", Toast.LENGTH_SHORT)
-                    .show()
+                FancyToast.makeText(
+                    requireActivity(),
+                    "Please choose less than 0",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.INFO,
+                    true
+                ).show()
                 fragmentConfirmTicketBinding.tieQuantity.setText("")
 
             }
@@ -528,18 +589,18 @@ class ConfirmTicketFragment : Fragment() {
         when (className) {
             "A" -> {
                 val price = quantity * 200
-                fragmentConfirmTicketBinding.tvPrice.setText("price: $price")
+                fragmentConfirmTicketBinding.tvPrice.text = "price: $price"
                 return price
             }
             "B" -> {
                 val price = quantity * 50
-                fragmentConfirmTicketBinding.tvPrice.setText("price: $price")
+                fragmentConfirmTicketBinding.tvPrice.text = "price: $price"
                 return price
 
             }
             else -> {
                 val price = quantity * 10
-                fragmentConfirmTicketBinding.tvPrice.setText("price: $price")
+                fragmentConfirmTicketBinding.tvPrice.text = "price: $price"
                 return price
 
             }

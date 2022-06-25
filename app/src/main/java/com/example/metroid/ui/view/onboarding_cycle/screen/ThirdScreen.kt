@@ -35,6 +35,7 @@ class ThirdScreen : Fragment() {
         fragmentThirdScreenBinding?.next?.setOnClickListener {
             findNavController().navigate(OnBoardingViewPagerFragmentDirections.actionOnBoardingViewPagerFragmentToLoginFragment())
         }
+
         return fragmentThirdScreenBinding?.root
     }
 

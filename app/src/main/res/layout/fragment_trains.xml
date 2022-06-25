@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/guideline"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:orientation="vertical"
             app:layout_constraintGuide_end="349dp"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -27,7 +26,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/guideline2"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="349dp"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -38,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/open_sans_light"
-            android:text="choose"
+            android:text="@string/choose"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -50,12 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/open_sans_extra_bold"
-            android:text="specific"
+            android:text="@string/specific"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/firstText"
-            app:layout_constraintTop_toTopOf="@+id/firstText"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toTopOf="@+id/firstText" />
 
         <TextView
             android:id="@+id/textView2"
@@ -63,19 +60,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/open_sans_light"
-            android:text="date"
+            android:text="@string/date"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
-            android:text="Book"
+            android:text="@string/book"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -86,9 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:fontFamily="@font/open_sans_extra_bold"
-            android:text="NOW"
+            android:text="@string/now"
             android:textColor="@color/primaryColor"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@id/textView3"

@@ -14,6 +14,7 @@ import com.example.metroid.databinding.FragmentForgotPasswordBinding
 import com.example.metroid.databinding.FragmentLoginBinding
 import com.example.metroid.ui.view.viewmodel.login_cycle.LoginViewModel
 import com.example.metroid.utils.Constants.checkEmail
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.launch
 
 
@@ -37,21 +38,35 @@ class ForgotPasswordFragment : Fragment() {
         mLoginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
 
         fragmentForgotPasswordBinding.btnLogin.setOnClickListener {
-            var email = fragmentForgotPasswordBinding.inputEmail.text.toString()
+            val email = fragmentForgotPasswordBinding.inputEmail.text.toString()
             if (!checkEmail(email)) {
-                Toast.makeText(requireActivity(), "email not valid", Toast.LENGTH_SHORT).show()
-            }
+                FancyToast.makeText(
+                    requireActivity(),
+                    "write a valid email",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()            }
             viewLifecycleOwner.lifecycleScope.launch {
                 if (mLoginViewModel.requestPassword(email)) {
-                    Toast.makeText(
+                    FancyToast.makeText(
                         requireActivity(),
                         "your new password sent successfully",
-                        Toast.LENGTH_SHORT
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.SUCCESS,
+                        true
                     ).show()
+
                     findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
                 } else {
-                    Toast.makeText(requireActivity(), "write a valid email", Toast.LENGTH_SHORT)
-                        .show()
+                    FancyToast.makeText(
+                        requireActivity(),
+                        "write a valid email",
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.ERROR,
+                        true
+                    ).show()
+
                 }
             }
 

@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="ui.view.settings_cycle.EditProfileFragment">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -37,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@+id/ivProfile"
+                    android:layout_toEndOf="@+id/ivProfile"
                     android:fontFamily="@font/open_sans_bold"
                     android:includeFontPadding="false"
                     android:text="Kamel Sayed"
@@ -49,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvFullName"
                     android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@+id/ivProfile"
+                    android:layout_toEndOf="@+id/ivProfile"
                     android:fontFamily="@font/open_sans_bold"
                     android:includeFontPadding="false"
                     android:text="Kamel Sayed"
@@ -102,7 +101,7 @@
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/open_sans_bold"
                             android:includeFontPadding="false"
-                            android:text="Credit"
+                            android:text="@string/credit"
                             android:textColor="@color/primaryTextColor"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -148,7 +147,7 @@
 
                             android:fontFamily="@font/open_sans_bold"
                             android:includeFontPadding="false"
-                            android:text="Trips"
+                            android:text="@string/trips"
                             android:textColor="@color/primaryTextColor"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -177,7 +176,7 @@
                         android:drawableLeft="@drawable/ic_person_blue"
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/calibri"
-                        android:hint="Username"
+                        android:hint="@string/username"
                         android:inputType="text"
                         android:maxLines="1"
                         android:textColor="@android:color/black"
@@ -199,7 +198,7 @@
                         android:drawableLeft="@drawable/ic_email"
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/calibri"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:textColor="@android:color/black"
@@ -218,10 +217,10 @@
                         android:id="@+id/etPhone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:drawableLeft="@drawable/ic_phone"
+                        android:drawableStart="@drawable/ic_phone"
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/calibri"
-                        android:hint="Phone: +20"
+                        android:hint="@string/phone_20"
                         android:inputType="phone"
                         android:maxLines="1"
                         android:textColor="@android:color/black"
@@ -240,7 +239,7 @@
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:drawableLeft="@drawable/ic_lock"
+                        android:drawableStart="@drawable/ic_lock"
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/calibri"
                         android:hint="@string/password"
@@ -255,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/primaryColor"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
                     android:textColor="@color/primaryTextColor" />
             </LinearLayout>
 
