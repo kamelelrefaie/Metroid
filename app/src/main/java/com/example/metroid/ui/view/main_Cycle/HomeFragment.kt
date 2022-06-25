@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
 
 
         fragmentHomeBinding.ivProfilePic.let {
-            Glide.with(requireActivity()).load(R.drawable.kamel).circleCrop().into(it)
+            Glide.with(requireActivity()).load(R.drawable.ic_person).circleCrop().into(it)
         }
 
 return fragmentHomeBinding.root
