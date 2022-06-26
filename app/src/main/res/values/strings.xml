@@ -69,5 +69,7 @@
     <string name="seat_number">Seat Number</string>
     <string name="confirm_ticket">Confirm Ticket</string>
     <string name="back_to_home">Back To Home</string>
+    <string name="your_id">Your Id</string>
+    <string name="recharge_your_account">Recharge Your Account</string>
 
 </resources>

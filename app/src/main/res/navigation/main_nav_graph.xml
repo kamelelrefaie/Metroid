@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_metroTripHistoryFragment"
             app:destination="@id/metroTripHistoryFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_showUserIDFragment"
+            app:destination="@id/showUserIDFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainsFragment"
@@ -107,4 +110,8 @@
         android:id="@+id/metroTripHistoryFragment"
         android:name="com.example.metroid.ui.view.settings_cycle.MetroTripHistoryFragment"
         android:label="MetroTripHistoryFragment" />
+    <fragment
+        android:id="@+id/showUserIDFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.ShowUserIDFragment"
+        android:label="ShowUserIDFragment" />
 </navigation>

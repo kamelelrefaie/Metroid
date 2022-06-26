@@ -63,6 +63,12 @@ class SettingsFragment : Fragment() {
             }
         }
 
+        fragmentSettingsBinding.cvShowId.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToShowUserIDFragment())
+            if (requireActivity() is HomeActivity) {
+                (activity as HomeActivity).hideBottomNavigationView()
+            }
+        }
 
         return fragmentSettingsBinding.root
     }
