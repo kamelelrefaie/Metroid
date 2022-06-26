@@ -11,6 +11,9 @@ interface MetroidApi {
     @POST("/api/v1/registration")
     suspend fun register(@Body body: RegisterBody): Login
 
+    @GET("/api/v1/registration/fetch")
+    suspend fun fetchNameAndId(@Query("email") email: String):  NameIdRequest
+
     @POST("/api/v1/registration/forget")
     suspend fun requestPassword(@Query("email") email: String): Login
 

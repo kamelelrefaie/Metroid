@@ -46,33 +46,40 @@ class ForgotPasswordFragment : Fragment() {
                     FancyToast.LENGTH_LONG,
                     FancyToast.ERROR,
                     true
-                ).show()            }
-            viewLifecycleOwner.lifecycleScope.launch {
-                if (mLoginViewModel.requestPassword(email)) {
-                    FancyToast.makeText(
-                        requireActivity(),
-                        "your new password sent successfully",
-                        FancyToast.LENGTH_LONG,
-                        FancyToast.SUCCESS,
-                        true
-                    ).show()
+                ).show()
+            } else if (email.isEmpty()) {
+                FancyToast.makeText(
+                    requireActivity(),
+                    "email field are required",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
+            } else {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    if (mLoginViewModel.requestPassword(email)) {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "your new password sent successfully",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS,
+                            true
+                        ).show()
+                        findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
+                    } else {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "you don't have an email register a new one now",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.WARNING,
+                            true
+                        ).show()
 
-                    findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
-                } else {
-                    FancyToast.makeText(
-                        requireActivity(),
-                        "write a valid email",
-                        FancyToast.LENGTH_LONG,
-                        FancyToast.ERROR,
-                        true
-                    ).show()
-
+                    }
                 }
             }
 
         }
         return fragmentForgotPasswordBinding.root
     }
-
-
 }

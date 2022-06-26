@@ -33,7 +33,7 @@ class MetroidRepositoryImpl @Inject constructor(
         dest: Int,
         arr: LocalDate
     ): TripResponse {
-        return metroidApi.getTripAtSpecificTime(source,dest,arr)
+        return metroidApi.getTripAtSpecificTime(source, dest, arr)
     }
 
     override suspend fun confirmTicketRequest(
@@ -41,7 +41,7 @@ class MetroidRepositoryImpl @Inject constructor(
         tripId: Long,
         ticketModel: TicketModel
     ): Login {
-     return  metroidApi.confirmTicketRequest(userId,tripId,ticketModel)
+        return metroidApi.confirmTicketRequest(userId, tripId, ticketModel)
     }
 
     override suspend fun getTicketInfo(userId: Long): TicketInfoData {
@@ -65,11 +65,15 @@ class MetroidRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateProfile(id: Long, updateProfileData: UpdateProfileData): Login {
-        return metroidApi.updateProfile(id,updateProfileData)
+        return metroidApi.updateProfile(id, updateProfileData)
     }
 
     override suspend fun getMetroTrips(userId: Long): GetMetroTripsHistoryFromApi {
         return metroidApi.getMetroTrips(userId)
+    }
+
+    override suspend fun fetchNameAndId(email: String): NameIdRequest {
+        return metroidApi.fetchNameAndId(email)
     }
 
 

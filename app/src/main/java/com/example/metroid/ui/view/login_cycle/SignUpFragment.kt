@@ -45,7 +45,15 @@ class SignUpFragment : Fragment() {
             val password = fragmentSignUpBinding.inputPassword.text.toString()
             val confirmPassword = fragmentSignUpBinding.inputConfirmPassword.text.toString()
 
-            if (password != confirmPassword) {
+            if(firstName.isEmpty() || secondName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+                FancyToast.makeText(
+                    requireActivity(),
+                    "please , all field are requiered",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
+            }else if (password != confirmPassword) {
                 FancyToast.makeText(
                     requireActivity(),
                     "password not match confirm",
@@ -53,9 +61,7 @@ class SignUpFragment : Fragment() {
                     FancyToast.ERROR,
                     true
                 ).show()
-            }
-
-            if (!checkEmail(email)) {
+            } else if (!checkEmail(email)) {
                 FancyToast.makeText(
                     requireActivity(),
                     "enter valid email",
@@ -63,29 +69,29 @@ class SignUpFragment : Fragment() {
                     FancyToast.ERROR,
                     true
                 ).show()
-            }
+            }else{
+                val body = RegisterBody(firstName, secondName, email, password)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val checkRequest = mLoginViewModel.register(body)
+                    if (checkRequest) {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "check your email for confirmation",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.INFO,
+                            true
+                        ).show()
+                    } else {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "enter valid information",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            true
+                        ).show()
+                    }
 
-            val body = RegisterBody(firstName, secondName, email, password)
-            viewLifecycleOwner.lifecycleScope.launch {
-                val checkRequest = mLoginViewModel.register(body)
-                if (checkRequest) {
-                    FancyToast.makeText(
-                        requireActivity(),
-                        "check your email for confirmation",
-                        FancyToast.LENGTH_LONG,
-                        FancyToast.INFO,
-                        true
-                    ).show()
-                } else {
-                    FancyToast.makeText(
-                        requireActivity(),
-                        "enter valid information",
-                        FancyToast.LENGTH_LONG,
-                        FancyToast.ERROR,
-                        true
-                    ).show()
                 }
-
             }
 
         }

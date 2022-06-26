@@ -2,6 +2,7 @@ package com.example.metroid.repository
 
 import com.example.metroid.model.remote.responses.*
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Query
 import java.time.LocalDate
 
@@ -21,4 +22,5 @@ interface MetroidRepository {
     suspend fun getTripCreditAndTrips(userId: Long): MetroCreditTripResponse
     suspend fun updateProfile(id: Long, updateProfileData: UpdateProfileData): Login
     suspend fun getMetroTrips(userId: Long): GetMetroTripsHistoryFromApi
+    suspend fun fetchNameAndId(email: String): NameIdRequest
 }

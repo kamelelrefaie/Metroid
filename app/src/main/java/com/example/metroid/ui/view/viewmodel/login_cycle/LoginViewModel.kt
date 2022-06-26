@@ -5,12 +5,14 @@ import android.util.Log
 
 import androidx.lifecycle.ViewModel
 import com.example.metroid.model.local.UserData
+import com.example.metroid.model.remote.responses.NameIdRequest
 import com.example.metroid.model.remote.responses.RegisterBody
 import com.example.metroid.repository.DataStoreManager
 
 import com.example.metroid.repository.MetroidRepository
 import com.example.metroid.utils.Constants.checkEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.jar.Attributes
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,5 +44,8 @@ class LoginViewModel @Inject constructor(
 
     suspend fun saveNameAndUserIdToDataStore(name: String, userId: Long, context: Context) {
         dataStore.save(UserData(name, userId))
+    }
+    suspend fun getNameId(email:String): NameIdRequest {
+       return repository.fetchNameAndId(email)
     }
 }

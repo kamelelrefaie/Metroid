@@ -24,58 +24,88 @@ class LoginFragment : Fragment() {
     private lateinit var fragmentLoginBinding: FragmentLoginBinding
 
     lateinit var mLoginViewModel: LoginViewModel
-
+    private var counter = 3
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         fragmentLoginBinding = FragmentLoginBinding.inflate(layoutInflater)
-        fragmentLoginBinding.forgotPassword.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
-        }
+
 
         mLoginViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         fragmentLoginBinding.btnLogin.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                mLoginViewModel.saveNameAndUserIdToDataStore("kamel",1,requireActivity())
-                startActivity(Intent(requireActivity(), HomeActivity::class.java))
 
+            val email = fragmentLoginBinding.inputEmail.text.toString()
+            val password = fragmentLoginBinding.inputPassword.text.toString()
+
+            if (counter == 0) {
+                counter = 3
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
+                FancyToast.makeText(
+                    requireActivity(),
+                    "you entered your password so many times, you can get it now from here",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
+            } else if (email.isEmpty() || password.isEmpty()) {
+
+                FancyToast.makeText(
+                    requireActivity(),
+                    "please all fields are required",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
+            } else if (!checkEmail(email)) {
+                FancyToast.makeText(
+                    requireActivity(),
+                    "enter valid email",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    true
+                ).show()
+            } else {
+                viewLifecycleOwner.lifecycleScope.launch {
+
+                    if (mLoginViewModel.login(email, password)) {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "login success",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS,
+                            true
+                        ).show()
+                        val nameIdRequest = mLoginViewModel.getNameId(email)
+                        mLoginViewModel.saveNameAndUserIdToDataStore(
+                            nameIdRequest.name,
+                            nameIdRequest.id.toLong(),
+                            requireActivity()
+                        )
+
+                        startActivity(Intent(requireActivity(), HomeActivity::class.java))
+                        requireActivity().finish()
+                    } else {
+                        FancyToast.makeText(
+                            requireActivity(),
+                            "Wrong email and Password",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            true
+                        ).show()
+                        counter--
+
+                    }
+
+                }
             }
-
-
-
-//            val email = fragmentLoginBinding.inputEmail.text.toString()
-//            val password = fragmentLoginBinding.inputPassword.text.toString()
-//
-//            viewLifecycleOwner.lifecycleScope.launch {
-//
-//                if (mLoginViewModel.login(email, password)) {
-//                    FancyToast.makeText(
-//                        requireActivity(),
-//                        "login success",
-//                        FancyToast.LENGTH_LONG,
-//                        FancyToast.INFO,
-//                        true
-//                    ).show()
-//                    startActivity(Intent(requireActivity(), HomeActivity::class.java))
-//                    requireActivity().finish()
-//
-//                } else
-//                    FancyToast.makeText(
-//                        requireActivity(),
-//                        "login failure , type your password and email again",
-//                        FancyToast.LENGTH_LONG,
-//                        FancyToast.INFO,
-//                        true
-//                    ).show()
-//            }
-
-
 
         }
 
-
+        fragmentLoginBinding.forgotPassword.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
+        }
         fragmentLoginBinding.gotoRegister.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
         }
