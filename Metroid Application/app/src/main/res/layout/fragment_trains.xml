@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.view.main_Cycle.train.TrainsFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="349dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline2"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="349dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/firstText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/choose"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/open_sans_extra_bold"
+            android:text="@string/specific"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/firstText"
+            app:layout_constraintTop_toTopOf="@+id/firstText" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/date"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/book"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/firstText"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/open_sans_extra_bold"
+            android:text="@string/now"
+            android:textColor="@color/primaryColor"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@id/textView3"
+            app:layout_constraintTop_toTopOf="@id/textView3"/>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:elevation="20dp"
+            android:hint="Search here..."
+            android:inputType="datetime"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/textView3"
+            >
+            <EditText
+                android:id="@+id/tilSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:padding="10dp"
+                android:textSize="14sp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvReservation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/noTrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="oops, no trains available \n please search again"
+            android:textColor="@color/primaryColor"
+            android:textSize="40sp"
+            android:padding="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

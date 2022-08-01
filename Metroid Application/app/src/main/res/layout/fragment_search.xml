@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.main_Cycle.SearchFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lySearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:background="@color/primaryColor"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/print_clearly"
+                    android:text="Hello, Kamel"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvFrom"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="45"
+                        android:fontFamily="@font/gotham"
+                        android:text="@string/from"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="10"
+                        android:src="@drawable/ic_swap_horiz_white" />
+
+                    <TextView
+                        android:id="@+id/tvTo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="45"
+                        android:fontFamily="@font/gotham"
+                        android:text="@string/to"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/print_clearly"
+                    android:text="@string/price_l_e"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="-44dp"
+                android:layout_marginRight="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textColorHint="#FF8A99AF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actMetroLineFrom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/calibri"
+                            android:hint="@string/metro_line"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textColorHint="#FF8A99AF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actFrom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/calibri"
+                            android:hint="@string/from"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textColorHint="#FF8A99AF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actMetroLineTo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/calibri"
+                            android:hint="@string/metro_line"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="8dp"
+                        android:textColorHint="#FF8A99AF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actTo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/calibri"
+                            android:hint="@string/to"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/calibri"
+                android:text="@string/search"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ui.view.settings_cycle.EditProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/primaryColor"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_person" />
+
+                <TextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/ivProfile"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:includeFontPadding="false"
+                    android:text="Kamel Sayed"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvFullName"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/ivProfile"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:includeFontPadding="false"
+                    android:text="Kamel Sayed"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-100dp"
+                android:padding="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/primaryColor"
+                    app:cardElevation="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/ic_credit" />
+
+                        <TextView
+                            android:id="@+id/tvCredit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:includeFontPadding="false"
+                            android:text="123$"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/tvDesc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvCredit"
+
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:includeFontPadding="false"
+                            android:text="@string/credit"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/primaryColor"
+                    app:cardElevation="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/ic_trips" />
+
+                        <TextView
+                            android:id="@+id/tvTrip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:includeFontPadding="false"
+                            android:text="123"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/tvDescTrip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvTrip"
+                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
+
+                            android:fontFamily="@font/open_sans_bold"
+                            android:includeFontPadding="false"
+                            android:text="@string/trips"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:padding="10dp"
+                    android:textColorHint="#FF8A99AF">
+
+                    <EditText
+                        android:id="@+id/etUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_person_blue"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/calibri"
+                        android:hint="@string/username"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:padding="10dp"
+                    android:textColorHint="#FF8A99AF">
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_email"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/calibri"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:padding="10dp"
+                    android:textColorHint="#FF8A99AF">
+
+                    <EditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_phone"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/calibri"
+                        android:hint="@string/phone_20"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:padding="10dp"
+                    android:textColorHint="#FF8A99AF">
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/calibri"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/primaryColor"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/primaryTextColor" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

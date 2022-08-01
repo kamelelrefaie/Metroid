@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.ReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" >
+        <action
+            android:id="@+id/action_reservationFragment_to_trainsFragment"
+            app:destination="@id/trainsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_showTicketFragment2"
+            app:destination="@id/showTicketFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_cancelTicketFragment"
+            app:destination="@id/cancelTicketFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_feedbackFragment"
+            app:destination="@id/feedbackFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_metroTripHistoryFragment"
+            app:destination="@id/metroTripHistoryFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_showUserIDFragment"
+            app:destination="@id/showUserIDFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainsFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.train.TrainsFragment"
+        android:label="fragment_trains"
+        tools:layout="@layout/fragment_trains" >
+        <argument
+            android:name="stationResponse"
+            app:argType="com.example.metroid.model.remote.responses.StationResponse" />
+        <action
+            android:id="@+id/action_trainsFragment_to_confirmTicketFragment"
+            app:destination="@id/confirmTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmTicketFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.train.ConfirmTicketFragment"
+        android:label="fragment_confirm_ticket"
+        tools:layout="@layout/fragment_confirm_ticket" >
+        <argument
+            android:name="tripId"
+            app:argType="long" />
+        <argument
+            android:name="userId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_confirmTicketFragment_to_confirmationTicketShowFragment"
+            app:destination="@id/confirmationTicketShowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmationTicketShowFragment"
+        android:name="com.example.metroid.ui.view.main_Cycle.train.ConfirmationTicketShowFragment"
+        android:label="fragment_confirmation_ticket_show"
+        tools:layout="@layout/fragment_confirmation_ticket_show" />
+    <fragment
+        android:id="@+id/showTicketFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.ShowTicketFragment"
+        android:label="fragment_show_ticket"
+        tools:layout="@layout/fragment_show_ticket" >
+        <action
+            android:id="@+id/action_showTicketFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cancelTicketFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.CancelTicketFragment"
+        android:label="fragment_cancel_ticket"
+        tools:layout="@layout/fragment_cancel_ticket" >
+        <action
+            android:id="@+id/action_cancelTicketFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedbackFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.FeedbackFragment"
+        android:label="FeedbackFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.EditProfileFragment"
+        android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/metroTripHistoryFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.MetroTripHistoryFragment"
+        android:label="MetroTripHistoryFragment" />
+    <fragment
+        android:id="@+id/showUserIDFragment"
+        android:name="com.example.metroid.ui.view.settings_cycle.ShowUserIDFragment"
+        android:label="ShowUserIDFragment" />
+</navigation>
