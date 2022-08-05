@@ -44,7 +44,7 @@ second you should open metroid app and change api address
    ```
 ## Screenshots
 
-![App Screenshot](https://drive.google.com/file/d/1H05DNb4sh7oSCiCH_VIXT0qDIljs_McR/view?usp=sharing)
+
 
 
 ## Example
