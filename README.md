@@ -1,18 +1,21 @@
 
-# METROID
+# METROID :metro:
+The idea is to replace metro tickets :ticket: by using NFC techonolgy 
 
-metroid divieded into three parts METROID ADMIN APP , METROID Backend(spring boot), METROID APP
+## About
 
-METROID APP : android app using kotlin
+Metroid divieded into three parts METROID ADMIN APP , METROID Backend(spring boot), METROID APP
+
+METROID APP :iphone: : android app using kotlin
 (MVVM,DI,Repository Pattern,Retrofit,NFC)
 replaced metro tickets by NFC techonology
 
-** i'll provide video in examples section below ** 
+** i'll provide a video in Demo section below ** 
 
-METROID Backend : using java srping boot 
+METROID Backend :computer: : using java srping boot 
 ,provide an API to metroid app 
 
-METROID ADMIN : android app , facilitate to admin to add trip , delete one and see feedbacks
+METROID ADMIN  :iphone: : android app , facilitate to admin to add trip , delete one and see feedbacks
 
 
 
@@ -36,7 +39,6 @@ spring.mail.username=
 second you should open metroid app and change api address
 
     
-    
 
   ```KOTLIN
     // you can put your ip here
@@ -44,10 +46,16 @@ second you should open metroid app and change api address
    ```
 ## Screenshots
 
+- Postman
+![image](https://user-images.githubusercontent.com/52335429/183098003-4a638eba-ef26-473b-84b4-5cd6b98881af.png)
+- Database Scheme
+![image](https://user-images.githubusercontent.com/52335429/183098132-22665344-3296-41b0-b5c8-fe6b3301c7aa.png)
 
 
 
-## Example
+## Demo
+
+https://user-images.githubusercontent.com/52335429/183096620-d800b9e2-4441-473c-90da-78a14528645b.mp4
 
 
 
